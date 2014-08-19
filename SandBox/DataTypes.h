@@ -1,0 +1,8 @@
+#define CUBE_FRONT_SIDE 0x01
+#define CUBE_BACK_SIDE 0x02
+#define CUBE_UP_SIDE 0x04
+#define CUBE_DOWN_SIDE 0x08
+#define CUBE_LEFT_SIDE 0x10
+#define CUBE_RIGHT_SIDE 0x20
+
+#define CUBE_SIZE 1.0f
