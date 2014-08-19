@@ -54,7 +54,7 @@
       <SDLCheck>true</SDLCheck>
       <AssemblerListingLocation>$(SolutionDir)tmp\%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(SolutionDir)tmp\%(RelativeDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)tmp\%(RelativeDir)$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)tmp\%(RelativeDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>$(SolutionDir)tmp\%(RelativeDir)</XMLDocumentationFileName>
     </ClCompile>
     <Link>

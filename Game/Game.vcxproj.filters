@@ -87,6 +87,5 @@
     <None Include="Common\Shaders\SimpleFragmentShader.fragmentshader">
       <Filter>Source Files\Common\Shaders</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
