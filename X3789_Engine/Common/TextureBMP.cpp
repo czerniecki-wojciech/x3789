@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "GameMainHeader.h"
+#include <X3789_Engine_Common.h>
 #include "TextureBMP.h"
 #include <fstream>
 

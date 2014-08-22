@@ -5,8 +5,11 @@
 class DLL_INTERFACE Cube
 {
 private:
-	std::atomic<short> paint_vector;
-	std::atomic<short> painted_counter;
+	//std::atomic<short> paint_vector;
+	//std::atomic<short> painted_counter;
+
+	short paint_vector;
+	short painted_counter;
 
 	float x, y;
 	float azimuth, elevation;

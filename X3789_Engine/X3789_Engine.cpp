@@ -2,5 +2,10 @@
 //
 
 #include "stdafx.h"
+#include "OpenGL3Initializer.h"
 
 
+void X3789_Engine_start()
+{
+	OpenGL3Initializer open_gl3_initializer;
+}

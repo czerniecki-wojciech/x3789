@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ShaderLoader.h"
 
-#include "../GameMainHeader.h"
+#include <X3789_Engine_Common.h>
 #include <algorithm>
 #include <iostream>
 #include <fstream>

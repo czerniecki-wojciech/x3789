@@ -10,6 +10,35 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\ControlInterface.cpp" />
+    <ClCompile Include="Common\TextureBMP.cpp" />
+    <ClCompile Include="Common\TextureStorage.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Object3D\Object3D.cpp" />
+    <ClCompile Include="OpenGL3Initializer.cpp" />
+    <ClCompile Include="ShaderInterface.cpp" />
+    <ClCompile Include="Shaders\ShaderLoader.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="WindowHolder.cpp" />
+    <ClCompile Include="WindowInterface.cpp" />
+    <ClCompile Include="X3789_Engine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\ControlInterface.h" />
+    <ClInclude Include="Common\TextureBMP.h" />
+    <ClInclude Include="Common\TextureStorage.h" />
+    <ClInclude Include="Object3D\Object3D.h" />
+    <ClInclude Include="OpenGL3Initializer.h" />
+    <ClInclude Include="ShaderInterface.h" />
+    <ClInclude Include="Shaders\ShaderLoader.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="WindowHolder.h" />
+    <ClInclude Include="WindowInterface.h" />
+    <ClInclude Include="X3789_Engine.h" />
+    <ClInclude Include="X3789_Engine_Common.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6E08FD07-08BF-481A-886E-638DB0C94D0B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -42,21 +71,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <SourcePath>$(VC_SourcePath);$(SolutionDir)</SourcePath>
+    <IncludePath>$(SolutionDir)X3789_Engine;$(SolutionDir)Common;$(SolutionDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>X3789_Engine_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;X3789_ENGINE_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

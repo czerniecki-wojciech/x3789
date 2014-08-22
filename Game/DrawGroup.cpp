@@ -1,7 +1,11 @@
+
 #include "stdafx.h"
+
+#ifdef VALID
+
 #include "VertexAttrib.h"
-#include "Common\TextureBMP.h"
-#include <Common\TextureStorage.h>
+//#include "Common\TextureBMP.h"
+//#include <Common\TextureStorage.h>
 #include "DrawGroup.h"
 
 
@@ -24,3 +28,5 @@ void DrawGroup::addVertexAttrib(VertexAttrib* new_va)
 	if (new_va)
 		vertex_attribs[vertex_attrib_num++] = new_va;
 }
+
+#endif

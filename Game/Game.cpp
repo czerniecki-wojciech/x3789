@@ -5,19 +5,22 @@
 #include <Windows.h>
 
 
-GLFWwindow* window;
+//GLFWwindow* window;
 
-#include "OpenGL3Initializer.h"
-#include "Common/ShaderLoader.h"
-#include "Common\ControlInterface.h"
-#include "VertexAttrib.h"
+//#include "Common/ShaderLoader.h"
+//#include "Common\ControlInterface.h"
+//#include "VertexAttrib.h"
+#include <X3789_Engine\X3789_Engine_Common.h>
+#include <X3789_Engine\WindowHolder.h>
+#include <X3789_Engine\WindowInterface.h>
+#include <X3789_Engine\ShaderInterface.h>
 
 glm::mat4 MVP;
 
 float x = 4;
 float z = 4;
 
-void calculateMVP()
+/*void calculateMVP()
 {
 	computeMatricesFromInputs();
 	glm::mat4 ProjectionMatrix = getProjectionMatrix();
@@ -25,15 +28,16 @@ void calculateMVP()
 	glm::mat4 ModelMatrix = glm::mat4(1.0);
 	MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
 }
-
+*/
 int _tmain(int argc, _TCHAR* argv[])
 {
-	OpenGL3Initializer open_gl_initializer;
-	ShaderLoader loader;
-	GLuint programID = loader.loadShader("Common/Shaders/SimpleVertexShader.vertexshader", "Common/Shaders/SimpleFragmentShader.fragmentshader");
+	LoadLibrary("X3789_Engine");
+	LoadLibrary("SandBox");
+	
+	GLuint programID = ShaderInterface::getInstance()->loadBasicShader();
 
 	// Get a handle for our "MVP" uniform
-	GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+	/*GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 
 	if (programID == -1)
 	{
@@ -72,7 +76,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
 
-	glfwSetCursorPos(window, 1024 / 2, 768 / 2);
+	WindowInterface::SetCursorPos(window, 1024 / 2, 768 / 2);
 
 	do
 	{
@@ -108,6 +112,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	} // Check if the ESC key was pressed or the window was closed
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 	glfwWindowShouldClose(window) == 0);
+	*/
+
+	while (WindowInterface::GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS //&&
+		)//glfwWindowShouldClose() == 0)
+	{
+
+	}
 
 	return 0;
 }

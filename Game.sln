@@ -11,7 +11,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandBox", "SandBox\SandBox.vcxproj", "{FBE63A7C-6194-435B-B3FF-0F210C21EFB6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XEngine", "XEngine\XEngine.vcxproj", "{6E08FD07-08BF-481A-886E-638DB0C94D0B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "X3789_Engine", "X3789_Engine\X3789_Engine.vcxproj", "{6E08FD07-08BF-481A-886E-638DB0C94D0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

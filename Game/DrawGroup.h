@@ -1,5 +1,6 @@
 #pragma once
 
+#ifdef VALID
 #define MAX_VERTEX_ATTRIBS 8
 
 class DrawGroup
@@ -35,3 +36,4 @@ public:
 	void addVertexAttrib(VertexAttrib* new_va);
 };
 
+#endif

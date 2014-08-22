@@ -1,7 +1,7 @@
 
 #pragma once
 
-class ShaderLoader
+class DLL_INTERFACE ShaderLoader
 {
 public:
 	ShaderLoader(){}

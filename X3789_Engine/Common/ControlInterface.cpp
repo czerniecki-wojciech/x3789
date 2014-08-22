@@ -1,9 +1,10 @@
-#include "stdafx.h"
 
-#include "GameMainHeader.h"
+#include "stdafx.h"
+#include <X3789_Engine_Common.h>
+
 #include "ControlInterface.h"
 
-extern GLFWwindow* window;
+//extern GLFWwindow* window;
 
 glm::mat4 ViewMatrix;
 glm::mat4 ProjectionMatrix;
@@ -15,7 +16,7 @@ glm::mat4 getProjectionMatrix(){
 	return ProjectionMatrix;
 }
 
-extern GLFWwindow* window;
+//extern GLFWwindow* window;
 
 // Initial position and angles
 glm::vec3 position = glm::vec3(0, 0, -5);
@@ -31,32 +32,32 @@ double currentTime;
 float deltaTime;
 
 void computeMatricesFromInputs(){
-
+	/*
 	// glfwGetTime is called only once, the first time this function is called
 	static double lastTime = glfwGetTime();
 
 	// Compute time difference between current and last frame
 	currentTime = glfwGetTime();
 	deltaTime = float(currentTime - lastTime);
-
+	//GLFWwindow window;
 	glfwGetCursorPos(window, &xpos, &ypos);
 
 	// Reset mouse position for next frame
-	glfwSetCursorPos(window, 512, 384); // 1024/2 768/2
+	glfwSetCursorPos(window, SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f); // 1024/2 768/2
 
 	// Compute new orientation
-	horizontalAngle += mouseSpeed * float(512 - xpos);
-	verticalAngle += mouseSpeed * float(384 - ypos);
+	horizontalAngle += mouseSpeed * float(SCREEN_WIDTH * 0.5f - xpos);
+	verticalAngle += mouseSpeed * float(SCREEN_HEIGHT * 0.5f - ypos);
 
 	if (horizontalAngle > 3.141592f)
 		horizontalAngle = -3.141592f;
 	else if (horizontalAngle < -3.141592f)
 		horizontalAngle = 3.141592f;
 
-	if (verticalAngle > 3.131592f / 2.0f)
-		verticalAngle = 3.131592f / 2.0f;
-	else if (verticalAngle < -3.131592f / 2.0f)
-		verticalAngle = -3.131592f / 2.0f;
+	if (verticalAngle > 3.131592f * 0.5f)
+		verticalAngle = 3.131592f * 0.5f;
+	else if (verticalAngle < -3.131592f * 0.5f)
+		verticalAngle = -3.131592f * 0.5f;
 
 	// Direction : Spherical coordinates to Cartesian coordinates conversion
 	glm::vec3 direction(
@@ -67,9 +68,9 @@ void computeMatricesFromInputs(){
 
 	// Right vector
 	glm::vec3 right = glm::vec3(
-		sin(horizontalAngle - 3.14f / 2.0f),
+		sin(horizontalAngle - 3.14f * 0.5f),
 		0,
-		cos(horizontalAngle - 3.14f / 2.0f)
+		cos(horizontalAngle - 3.14f * 0.5f)
 		);
 
 	// Up vector
@@ -105,5 +106,6 @@ void computeMatricesFromInputs(){
 
 	// For the next frame, the "last time" will be "now"
 	lastTime = currentTime;
+	*/
 }
 
