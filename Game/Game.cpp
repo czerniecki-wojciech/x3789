@@ -33,7 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	LoadLibrary("X3789_Engine");
 	LoadLibrary("SandBox");
-	
+
 	GLuint programID = ShaderInterface::getInstance()->loadBasicShader();
 
 	// Get a handle for our "MVP" uniform
@@ -113,12 +113,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 	glfwWindowShouldClose(window) == 0);
 	*/
-
-	while (WindowInterface::GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS //&&
-		)//glfwWindowShouldClose() == 0)
+	do
 	{
 
-	}
+	} while (WindowInterface::GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS && WindowInterface::WindowShouldClose() == 0);
 
 	return 0;
 }

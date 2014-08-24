@@ -16,6 +16,7 @@
     <ClCompile Include="Common\TextureStorage.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Object3D\Object3D.cpp" />
+    <ClCompile Include="Object3D\VertexStorage.cpp" />
     <ClCompile Include="OpenGL3Initializer.cpp" />
     <ClCompile Include="ShaderInterface.cpp" />
     <ClCompile Include="Shaders\ShaderLoader.cpp" />
@@ -29,6 +30,7 @@
     <ClInclude Include="Common\TextureBMP.h" />
     <ClInclude Include="Common\TextureStorage.h" />
     <ClInclude Include="Object3D\Object3D.h" />
+    <ClInclude Include="Object3D\VertexStorage.h" />
     <ClInclude Include="OpenGL3Initializer.h" />
     <ClInclude Include="ShaderInterface.h" />
     <ClInclude Include="Shaders\ShaderLoader.h" />

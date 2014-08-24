@@ -17,3 +17,15 @@ struct Vertex
 	glm::vec3 position;
 	glm::vec3 color;
 };
+
+struct UniformBase
+{
+	char* name;
+	GLenum type;
+	GLsizei total_size;
+};
+
+struct Uniform : public UniformBase
+{
+	float data[16];
+};

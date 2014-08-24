@@ -64,6 +64,7 @@
     <ClCompile Include="ShaderInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Object3D\VertexStorage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -104,6 +105,9 @@
     </ClInclude>
     <ClInclude Include="Object3D\Object3D.h">
       <Filter>Header Files\Object3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D\VertexStorage.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
