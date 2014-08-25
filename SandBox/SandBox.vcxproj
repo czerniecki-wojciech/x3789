@@ -57,12 +57,16 @@
       <ObjectFileName>$(SolutionDir)tmp\%(RelativeDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(SolutionDir)tmp\%(RelativeDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>$(SolutionDir)tmp\%(RelativeDir)</XMLDocumentationFileName>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>X3789_Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

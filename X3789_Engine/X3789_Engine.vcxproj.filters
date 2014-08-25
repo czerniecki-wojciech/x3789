@@ -26,6 +26,12 @@
     <Filter Include="Header Files\Object3D">
       <UniqueIdentifier>{be41b8a7-24eb-4611-8594-929a3f402b0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object3D\Primitives">
+      <UniqueIdentifier>{f99ed32a-a0ed-4457-a7b6-a148bd954e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object3D\Primitives">
+      <UniqueIdentifier>{58122ba8-a7aa-456f-875c-50b4174a0c4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -64,7 +70,18 @@
     <ClCompile Include="ShaderInterface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Object3D\VertexStorage.cpp" />
+    <ClCompile Include="Object3D\UniformStorage.cpp">
+      <Filter>Source Files\Object3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D\VertexStorage.cpp">
+      <Filter>Source Files\Object3D</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D\Primitives\Cube.cpp">
+      <Filter>Source Files\Object3D\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D\UniformCreator.cpp">
+      <Filter>Source Files\Object3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -106,8 +123,20 @@
     <ClInclude Include="Object3D\Object3D.h">
       <Filter>Header Files\Object3D</Filter>
     </ClInclude>
-    <ClInclude Include="Object3D\VertexStorage.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Object3D\UniformStorage.h">
+      <Filter>Header Files\Object3D</Filter>
     </ClInclude>
+    <ClInclude Include="Object3D\VertexStorage.h">
+      <Filter>Header Files\Object3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D\Primitives\Cube.h">
+      <Filter>Header Files\Object3D\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D\UniformCreator.h">
+      <Filter>Header Files\Object3D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

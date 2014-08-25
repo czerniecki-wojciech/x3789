@@ -16,6 +16,9 @@
     <ClCompile Include="Common\TextureStorage.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Object3D\Object3D.cpp" />
+    <ClCompile Include="Object3D\Primitives\Cube.cpp" />
+    <ClCompile Include="Object3D\UniformCreator.cpp" />
+    <ClCompile Include="Object3D\UniformStorage.cpp" />
     <ClCompile Include="Object3D\VertexStorage.cpp" />
     <ClCompile Include="OpenGL3Initializer.cpp" />
     <ClCompile Include="ShaderInterface.cpp" />
@@ -30,6 +33,9 @@
     <ClInclude Include="Common\TextureBMP.h" />
     <ClInclude Include="Common\TextureStorage.h" />
     <ClInclude Include="Object3D\Object3D.h" />
+    <ClInclude Include="Object3D\Primitives\Cube.h" />
+    <ClInclude Include="Object3D\UniformCreator.h" />
+    <ClInclude Include="Object3D\UniformStorage.h" />
     <ClInclude Include="Object3D\VertexStorage.h" />
     <ClInclude Include="OpenGL3Initializer.h" />
     <ClInclude Include="ShaderInterface.h" />
@@ -40,6 +46,9 @@
     <ClInclude Include="WindowInterface.h" />
     <ClInclude Include="X3789_Engine.h" />
     <ClInclude Include="X3789_Engine_Common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6E08FD07-08BF-481A-886E-638DB0C94D0B}</ProjectGuid>
@@ -86,12 +95,16 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;X3789_ENGINE_EXPORT;WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

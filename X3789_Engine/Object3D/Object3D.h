@@ -1,15 +1,23 @@
 
-#pragma once
+#ifndef __Object3D__
+#define __Object3D__
 
-class Object3D
+class VertexStorage;
+class UniformStorage;
+
+class DLL_INTERFACE Object3D
 {
 protected:
 	GLuint program_ID;
 	GLenum primitive_type;
-	VertexStorage* vertices;
+	GLuint vertex_buffer;
+	GLuint vertex_array;
 
-	virtual void loadVertexToGPU() = 0;
-	virtual void loadUniformsToGPU() = 0;
+	VertexStorage* vertices;
+	UniformStorage* uniforms;
+
+	void loadVertexToGPU();
+	void loadUniformsToGPU();
 
 	float x, y, z;
 	float horizontal_angle;
@@ -57,3 +65,5 @@ public:
 		return this->program_ID;
 	}
 };
+
+#endif

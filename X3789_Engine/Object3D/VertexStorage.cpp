@@ -15,6 +15,8 @@ VertexStorage::VertexStorage(unsigned int grow_by)
 
 VertexStorage::~VertexStorage()
 {
+	if (vertices)
+		free(vertices);
 }
 
 Vertex* VertexStorage::newVertex()
@@ -29,7 +31,9 @@ void VertexStorage::newVertex(Vertex* vertex)
 
 void VertexStorage::newVertex(float x, float y, float z, float r, float g, float b)
 {
-
+	Vertex* vertex = this->allocNewVertexSpace();
+	vertex->position = glm::vec3(x, y, z);
+	vertex->color = glm::vec3(r, g, b);
 }
 
 Vertex* VertexStorage::allocNewVertexSpace()

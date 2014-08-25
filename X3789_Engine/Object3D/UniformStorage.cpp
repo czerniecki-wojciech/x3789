@@ -11,6 +11,8 @@ UniformStorage::UniformStorage()
 
 UniformStorage::~UniformStorage()
 {
+	if (this->uniforms_memory)
+		free(uniforms_memory);
 }
 
 

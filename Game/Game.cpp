@@ -11,6 +11,10 @@
 //#include "Common\ControlInterface.h"
 //#include "VertexAttrib.h"
 #include <X3789_Engine\X3789_Engine_Common.h>
+//#include <X3789_Engine\Object3D\VertexStorage.h>
+//#include <X3789_Engine\Object3D\UniformStorage.h>
+#include <X3789_Engine\Object3D\Object3D.h>
+#include <X3789_Engine\Object3D\Primitives\Cube.h>
 #include <X3789_Engine\WindowHolder.h>
 #include <X3789_Engine\WindowInterface.h>
 #include <X3789_Engine\ShaderInterface.h>
@@ -113,6 +117,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 	glfwWindowShouldClose(window) == 0);
 	*/
+
+
 	do
 	{
 

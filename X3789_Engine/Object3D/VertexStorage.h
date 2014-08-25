@@ -1,7 +1,7 @@
 
 #pragma once
 
-class VertexStorage
+class DLL_INTERFACE VertexStorage
 {
 	static const unsigned int size_of_vertex;
 	Vertex* vertices;
@@ -23,6 +23,11 @@ public:
 	Vertex* getData()
 	{
 		return this->vertices;
+	}
+
+	unsigned int getVerticesNum()
+	{
+		return this->vertices_num;
 	}
 
 	unsigned int getAllocatedVerticesNum()

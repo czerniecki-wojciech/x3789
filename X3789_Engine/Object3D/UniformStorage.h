@@ -1,7 +1,7 @@
 
 #pragma once
 
-class UniformStorage
+class DLL_INTERFACE UniformStorage
 {
 private:
 	BYTE* uniforms_memory;
