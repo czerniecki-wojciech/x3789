@@ -12,6 +12,7 @@ protected:
 	GLenum primitive_type;
 	GLuint vertex_buffer;
 	GLuint vertex_array;
+	GLuint MatrixID;
 
 	VertexStorage* vertices;
 	UniformStorage* uniforms;
@@ -28,6 +29,10 @@ protected:
 
 	glm::mat4 ViewMatrix;
 	glm::mat4 ProjectionMatrix;
+	glm::mat4 ModelMatrix;
+
+	glm::mat4 MVP;
+
 	glm::vec3 position;
 
 	glm::vec3 direction;
@@ -48,6 +53,7 @@ public:
 	inline void setProgram(GLuint program_ID)
 	{
 		this->program_ID = program_ID;
+		MatrixID = glGetUniformLocation(this->program_ID, "MVP");
 	}
 
 	inline GLuint getProgram()
@@ -63,6 +69,13 @@ public:
 	inline GLenum getPrimitiveType()
 	{
 		return this->program_ID;
+	}
+
+	inline void printDebugInfo()
+	{
+		printf("(%f, %f, %f) \t h: %f v: %f\n", x, y, z, horizontal_angle, vertical_angle);
+		horizontal_angle += 0.01;
+		vertical_angle += 0.05;
 	}
 };
 

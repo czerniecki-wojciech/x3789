@@ -15,13 +15,25 @@ Object3D::Object3D()
 	, primitive_type(GL_TRIANGLES)
 	, vertices(NULL)
 	, uniforms(NULL)
-	, x(0)
-	, y(0)
-	, z(-5)
+	, x(3)
+	, y(3)
+	, z(-15)
 	, horizontal_angle(0.0f)
 	, vertical_angle(0.0f)
 {
 	Move(0); //TMP
+
+	glGenVertexArrays(1, &this->vertex_array);	 GL_ERROR();
+	glBindVertexArray(this->vertex_array);		 GL_ERROR();
+
+	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);			GL_ERROR();
+
+
+	static const GLushort element_buffer[] = { 0, 1, 2 };
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(element_buffer), element_buffer, GL_STATIC_DRAW);
+
 }
 
 
@@ -30,31 +42,29 @@ Object3D::~Object3D()
 
 void Object3D::loadVertexToGPU()
 {
+	//printDebugInfo();
 	if (!vertices)
 		return;
 
-	glGenBuffers(1, &this->vertex_buffer);
-	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);
+	
 
-	glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesNum(), this->vertices->getData(), GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getData(), GL_STATIC_DRAW);   GL_ERROR();
 
-	glGenVertexArrays(1, &this->vertex_array);
-	glBindVertexArray(this->vertex_array);
-
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);
+	
+	glEnableVertexAttribArray(0);						   GL_ERROR();
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);	   GL_ERROR();
 	glVertexAttribPointer(
 		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-		this->vertices->getVerticesNum(),	// size
+		3,									// size (how many floats define vertex)
 		GL_FLOAT,							// type
 		GL_FALSE,							// normalized?
 		0,									// stride
 		(void*)0							// array buffer offset
-		);
+		);	GL_ERROR();
+	
+	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum());	GL_ERROR();
 
-	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum() / 3);
-
-	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(0);	GL_ERROR();
 }
 
 inline void Object3D::loadUniformsToGPU()
@@ -126,11 +136,12 @@ void Object3D::Move(GLenum key)
 
 void Object3D::calculateMVPMatrix()
 {
-	WindowInterface::GetCursorPos(this->x, this->y);
-	WindowInterface::SetCursorPosCenter();
+	Move(0);
+	//WindowInterface::GetCursorPos(this->x, this->y);
+	//WindowInterface::SetCursorPosCenter();
 
-	horizontal_angle += mouse_speed * float(SCREEN_WIDTH * 0.5f - x);
-	vertical_angle += mouse_speed * float(SCREEN_HEIGHT * 0.5f - y);
+	//horizontal_angle += mouse_speed * float(SCREEN_WIDTH * 0.5f - x);
+	//vertical_angle += mouse_speed * float(SCREEN_HEIGHT * 0.5f - y);
 
 	if (horizontal_angle > 3.141592f)
 		horizontal_angle = -3.141592f;
@@ -138,19 +149,31 @@ void Object3D::calculateMVPMatrix()
 		horizontal_angle = 3.141592f;
 
 	if (vertical_angle > 3.131592f * 0.5f)
-		vertical_angle = 3.131592f * 0.5f;
-	else if (vertical_angle < -3.131592f * 0.5f)
 		vertical_angle = -3.131592f * 0.5f;
+	else if (vertical_angle < -3.131592f * 0.5f)
+		vertical_angle = 3.131592f * 0.5f;
 
 	
 
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	ProjectionMatrix = glm::perspective(initial_FoV, 4.0f / 3.0f, 0.1f, 100.0f);
 	// Camera matrix
+	/*
 	ViewMatrix = glm::lookAt(
 		position,           // Camera is here
 		position + direction, // and looks here : at the same position, plus "direction"
 		up                  // Head is up (set to 0,-1,0 to look upside-down)
 		);
+	*/
+	ViewMatrix = glm::lookAt(
+		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
+		glm::vec3(0, 0, 0), // and looks at the origin
+		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+		);
 
+	ModelMatrix = glm::mat4(1.0f);
+
+	MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
+
+	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 }

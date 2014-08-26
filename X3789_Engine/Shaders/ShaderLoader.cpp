@@ -29,6 +29,7 @@ GLuint ShaderLoader::loadShader(const char * vertex_file_path, const char * frag
 	}
 	else
 	{
+		printf("ERROR: cant read vertex shader source file\n");
 		return -1;
 	}
 
@@ -45,6 +46,7 @@ GLuint ShaderLoader::loadShader(const char * vertex_file_path, const char * frag
 	}
 	else
 	{
+		printf("ERROR: cant read vertex shader source file\n");
 		return -1;
 	}
 

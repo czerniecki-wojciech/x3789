@@ -117,11 +117,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 	glfwWindowShouldClose(window) == 0);
 	*/
-
+	Cube cube;
+	cube.setProgram(programID);
 
 	do
 	{
-
+		glClear(GL_COLOR_BUFFER_BIT);
+		cube.draw();
+		WindowInterface::endFrameDraw();
 	} while (WindowInterface::GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS && WindowInterface::WindowShouldClose() == 0);
 
 	return 0;

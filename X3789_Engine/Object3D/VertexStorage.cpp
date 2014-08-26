@@ -24,21 +24,25 @@ Vertex* VertexStorage::newVertex()
 	return this->allocNewVertexSpace();
 }
 
+/*
 void VertexStorage::newVertex(Vertex* vertex)
 {
 	memcpy((BYTE*)this->allocNewVertexSpace(), vertex, size_of_vertex);
 }
+*/
 
 void VertexStorage::newVertex(float x, float y, float z, float r, float g, float b)
 {
 	Vertex* vertex = this->allocNewVertexSpace();
 	vertex->position = glm::vec3(x, y, z);
-	vertex->color = glm::vec3(r, g, b);
+//	vertex->color = glm::vec3(r, g, b);
+
+	//return vertex;
 }
 
 Vertex* VertexStorage::allocNewVertexSpace()
 {
-	if (vertices_num > allocated_vertices_num + 1)
+	if (vertices_num < allocated_vertices_num + 1)
 	{
 		Vertex* new_vertices_memory = (Vertex*)malloc(size_of_vertex * (allocated_vertices_num + grow_by));
 
@@ -48,8 +52,9 @@ Vertex* VertexStorage::allocNewVertexSpace()
 			free(vertices);
 		}
 		vertices = new_vertices_memory;
+		allocated_vertices_num += grow_by;
 	}
 
-	return vertices + allocated_vertices_num++;
+	return vertices + vertices_num++;
 
 }

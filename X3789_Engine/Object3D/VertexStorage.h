@@ -17,7 +17,7 @@ public:
 	~VertexStorage();
 
 	Vertex* newVertex();
-	void newVertex(Vertex* vertex);
+	//void newVertex(Vertex* vertex);
 	void newVertex(float x, float y, float z, float r, float g, float b);
 
 	Vertex* getData()
@@ -38,5 +38,10 @@ public:
 	void changeGrowBy(unsigned int grow_by)
 	{
 		this->grow_by = grow_by;
+	}
+
+	unsigned int getVerticesTotalSize()
+	{
+		return this->vertices_num * this->size_of_vertex;
 	}
 };

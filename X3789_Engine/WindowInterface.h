@@ -36,5 +36,12 @@ public:
 		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
 		return ::glfwWindowShouldClose(window);
 	}
+
+	static void endFrameDraw()
+	{
+		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
 };
 

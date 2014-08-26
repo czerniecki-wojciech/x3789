@@ -37,9 +37,9 @@ OpenGL3Initializer::OpenGL3Initializer()
 	}
 	
 	// Enable depth test
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 	// Accept fragment if it closer to the camera than the former one
-	glDepthFunc(GL_LESS);
+	//glDepthFunc(GL_LESS);
 
 	glfwMakeContextCurrent(window); // Initialize GLEW
 	glewExperimental = true; // Needed in core profile
@@ -53,7 +53,8 @@ OpenGL3Initializer::OpenGL3Initializer()
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	WindowHolder::getWindowHolder()->setWindow(window);
-	
+	// Dark blue background
+	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 }
 
 OpenGL3Initializer::~OpenGL3Initializer()
