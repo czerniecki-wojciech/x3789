@@ -13,9 +13,9 @@ Cube::Cube()
 	vertices->newVertex(1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f);
 	vertices->newVertex(0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f);
 
-	/*vertices->newVertex(-0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f);
+	vertices->newVertex(-0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f);
 	vertices->newVertex(0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f);
-	vertices->newVertex(0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f);*/
+	vertices->newVertex(0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f);
 }
 
 

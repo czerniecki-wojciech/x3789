@@ -23,16 +23,25 @@ Object3D::Object3D()
 {
 	Move(0); //TMP
 
-	glGenVertexArrays(1, &this->vertex_array);	 GL_ERROR();
-	glBindVertexArray(this->vertex_array);		 GL_ERROR();
-
 	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);			GL_ERROR();
 
 
-	static const GLushort element_buffer[] = { 0, 1, 2 };
+	static const GLfloat g_vertex_buffer_data[] = {
+		0.0f, 0.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,
+		};
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(element_buffer), element_buffer, GL_STATIC_DRAW);
+
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+	glGenVertexArrays(1, &this->vertex_array);	 GL_ERROR();
+	glBindVertexArray(this->vertex_array);		 GL_ERROR();
 
 }
 
