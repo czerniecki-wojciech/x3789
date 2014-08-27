@@ -12,10 +12,11 @@
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 768
 
-struct Vertex
+#define CUBE_SIZE 1.0f
+
+struct VertexData
 {
-	glm::vec3 position;
-	//glm::vec3 color;
+	glm::vec3 data;
 };
 
 struct UniformBase

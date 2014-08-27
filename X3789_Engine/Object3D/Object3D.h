@@ -47,6 +47,7 @@ public:
 	~Object3D();
 
 	void draw();
+	void endObjectDefinition();
 	void calculateMVPMatrix();
 	void Move(GLenum key);
 

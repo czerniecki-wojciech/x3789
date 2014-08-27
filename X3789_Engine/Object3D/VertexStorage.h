@@ -4,25 +4,31 @@
 class DLL_INTERFACE VertexStorage
 {
 	static const unsigned int size_of_vertex;
-	Vertex* vertices;
+	VertexData* vertices;
+	VertexData* colors;
 	unsigned int vertices_num;
 	unsigned int allocated_vertices_num;
 
 	unsigned int grow_by;
 
-	Vertex* allocNewVertexSpace();
+	VertexData* allocNewVertexSpace();
 
 public:
 	VertexStorage(unsigned int grow_by = 8);
 	~VertexStorage();
 
-	Vertex* newVertex();
+	//Vertex* newVertex();
 	//void newVertex(Vertex* vertex);
 	void newVertex(float x, float y, float z, float r, float g, float b);
 
-	Vertex* getData()
+	VertexData* getVerticesData()
 	{
 		return this->vertices;
+	}
+
+	VertexData* getVerticesColorData()
+	{
+		return this->colors;
 	}
 
 	unsigned int getVerticesNum()

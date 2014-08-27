@@ -22,27 +22,6 @@ Object3D::Object3D()
 	, vertical_angle(0.0f)
 {
 	Move(0); //TMP
-
-	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
-	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);			GL_ERROR();
-
-
-	static const GLfloat g_vertex_buffer_data[] = {
-		0.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		};
-
-
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-
-	glGenVertexArrays(1, &this->vertex_array);	 GL_ERROR();
-	glBindVertexArray(this->vertex_array);		 GL_ERROR();
-
 }
 
 
@@ -93,6 +72,26 @@ inline void Object3D::draw()
 
 	loadVertexToGPU();
 
+}
+
+void Object3D::endObjectDefinition()
+{
+	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
+	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);			GL_ERROR();
+
+
+	/*static const GLfloat g_vertex_buffer_data[] = {
+		0.0f, 0.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		1.0f, 1.0f, 0.0f,
+	};*/
+
+
+
+	glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getVerticesData() , GL_STATIC_DRAW);		GL_ERROR();
 }
 
 void Object3D::Move(GLenum key)
