@@ -11,7 +11,7 @@ protected:
 	GLuint program_ID;
 	GLenum primitive_type;
 	GLuint vertex_buffer;
-	GLuint vertex_array;
+	GLuint color_buffer;
 	GLuint MatrixID;
 
 	VertexStorage* vertices;
@@ -42,6 +42,8 @@ protected:
 	static const float initial_FoV;
 	static const float speed;
 	static const float mouse_speed;
+
+	float mouse_x, mouse_y;
 public:
 	Object3D();
 	~Object3D();
@@ -72,11 +74,16 @@ public:
 		return this->program_ID;
 	}
 
+	inline void setPosition(float x, float y, float z)
+	{
+		this->position = glm::vec3(x, y, z);
+	}
+
 	inline void printDebugInfo()
 	{
-		printf("(%f, %f, %f) \t h: %f v: %f\n", x, y, z, horizontal_angle, vertical_angle);
-		horizontal_angle += 0.01;
-		vertical_angle += 0.05;
+		printf("(%f, %f, %f) \t h: %f v: %f\n", position.x, position.y, position.z, horizontal_angle, vertical_angle);
+		//horizontal_angle += 0.01f;
+		//vertical_angle += 0.05f;
 	}
 };
 

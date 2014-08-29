@@ -40,91 +40,45 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	GLuint programID = ShaderInterface::getInstance()->loadBasicShader();
 
-	// Get a handle for our "MVP" uniform
-	/*GLuint MatrixID = glGetUniformLocation(programID, "MVP");
-
-	if (programID == -1)
-	{
-		glfwTerminate();
-		return -1;
-	}
-
-	
-	static const GLfloat g_vertex_buffer_data[] = {
-		0.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-	};
-
-	VertexAttrib attrib(18);
-
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
-	
-	// This will identify our vertex buffer
-	GLuint vertexbuffer;
-
-	// Generate 1 buffer, put the resulting identifier in vertexbuffer
-	glGenBuffers(1, &vertexbuffer);
-
-	// The following commands will talk about our 'vertexbuffer' buffer
-	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-
-	// Give our vertices to OpenGL.
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-	//GLuint programID = 0;
-
-	GLuint VertexArrayID;
-	glGenVertexArrays(1, &VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
-	WindowInterface::SetCursorPos(window, 1024 / 2, 768 / 2);
-
-	do
-	{
-
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-		glUseProgram(programID);
-
-
-		calculateMVP();
-		// Send our transformation to the currently bound shader, 
-		// in the "MVP" uniform
-		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-		glEnableVertexAttribArray(0);
-		//glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-		glVertexAttribPointer(
-			0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-			3,                  // size
-			GL_FLOAT,           // type
-			GL_FALSE,           // normalized?
-			0,                  // stride
-			(void*)0            // array buffer offset
-			);
-
-		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 6); // Starting from vertex 0; 3 vertices total -> 1 triangle
-
-		glDisableVertexAttribArray(0);
-
-		// Swap buffers
-		glfwSwapBuffers(window);
-		glfwPollEvents();
-	} // Check if the ESC key was pressed or the window was closed
-	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
-	glfwWindowShouldClose(window) == 0);
-	*/
 	Cube cube;
+	Cube cube2;
 	cube.setProgram(programID);
+	cube2.setProgram(programID);
+	cube2.setPosition(3, 0, 0);
+
+	WindowInterface::SetCursorPosCenter();
 
 	do
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 		cube.draw();
+		cube2.draw();
 		WindowInterface::endFrameDraw();
+
+		if (WindowInterface::GetKey(GLFW_KEY_UP) == GLFW_PRESS || WindowInterface::GetKey(GLFW_KEY_W) == GLFW_PRESS){
+			cube.Move(GLFW_KEY_UP);
+			cube2.Move(GLFW_KEY_UP);
+		}
+		if (WindowInterface::GetKey(GLFW_KEY_DOWN) == GLFW_PRESS || WindowInterface::GetKey(GLFW_KEY_S) == GLFW_PRESS){
+			cube.Move(GLFW_KEY_DOWN);
+			cube2.Move(GLFW_KEY_DOWN);
+		}
+		if (WindowInterface::GetKey(GLFW_KEY_LEFT) == GLFW_PRESS || WindowInterface::GetKey(GLFW_KEY_A) == GLFW_PRESS){
+			cube.Move(GLFW_KEY_LEFT);
+			cube2.Move(GLFW_KEY_LEFT);
+		}
+		if (WindowInterface::GetKey(GLFW_KEY_RIGHT) == GLFW_PRESS || WindowInterface::GetKey(GLFW_KEY_D) == GLFW_PRESS){
+			cube.Move(GLFW_KEY_RIGHT);
+			cube2.Move(GLFW_KEY_RIGHT);
+		}
+		if (WindowInterface::GetKey(GLFW_KEY_SPACE) == GLFW_PRESS){
+			cube.Move(GLFW_KEY_SPACE);
+			cube2.Move(GLFW_KEY_SPACE);
+		}
+		if (WindowInterface::GetKey(GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS){
+			cube.Move(GLFW_KEY_LEFT_CONTROL);
+			cube2.Move(GLFW_KEY_LEFT_CONTROL);
+		}
 	} while (WindowInterface::GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS && WindowInterface::WindowShouldClose() == 0);
 
 	return 0;

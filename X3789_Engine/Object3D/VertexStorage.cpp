@@ -36,17 +36,23 @@ void VertexStorage::newVertex(Vertex* vertex)
 void VertexStorage::newVertex(float x, float y, float z, float r, float g, float b)
 {
 	VertexData* vertex = this->allocNewVertexSpace();
-	vertex->data = glm::vec3(x, y, z);
+	//vertex->data = glm::vec3(x, y, z);
+	vertex->data[0] = x;
+	vertex->data[1] = y;
+	vertex->data[2] = z;
 
-	VertexData* color = this->colors + vertices_num - 1;
-	color->data = glm::vec3(r, g, b);
+	VertexData* color = (VertexData*)((BYTE*)this->colors + (vertices_num - 1) * size_of_vertex);
+	//color->data = glm::vec3(0.78, g, b);
+	color->data[0] = r;
+	color->data[1] = g;
+	color->data[2] = b;
 
 	//return vertex;
 }
 
 VertexData* VertexStorage::allocNewVertexSpace()
 {
-	if (vertices_num < allocated_vertices_num + 1)
+	if (vertices_num + 1 > allocated_vertices_num)
 	{
 		VertexData* new_vertices_memory = (VertexData*)malloc(size_of_vertex * (allocated_vertices_num + grow_by));
 

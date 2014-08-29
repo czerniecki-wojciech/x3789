@@ -30,7 +30,7 @@ Object3D::~Object3D()
 
 void Object3D::loadVertexToGPU()
 {
-	//printDebugInfo();
+	printDebugInfo();
 	if (!vertices)
 		return;
 
@@ -38,7 +38,7 @@ void Object3D::loadVertexToGPU()
 
 	//glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getData(), GL_STATIC_DRAW);   GL_ERROR();
 
-	
+
 	glEnableVertexAttribArray(0);						   GL_ERROR();
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);	   GL_ERROR();
 	glVertexAttribPointer(
@@ -49,10 +49,23 @@ void Object3D::loadVertexToGPU()
 		0,									// stride
 		(void*)0							// array buffer offset
 		);	GL_ERROR();
+
+	
+	glEnableVertexAttribArray(1);						   GL_ERROR();
+	glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);	   GL_ERROR();
+	glVertexAttribPointer(
+		1,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+		3,									// size (how many floats define vertex)
+		GL_FLOAT,							// type
+		GL_FALSE,							// normalized?
+		0,									// stride
+		(void*)0							// array buffer offset
+		);	GL_ERROR();
 	
 	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum());	GL_ERROR();
 
 	glDisableVertexAttribArray(0);	GL_ERROR();
+	glDisableVertexAttribArray(1);	GL_ERROR();
 }
 
 inline void Object3D::loadUniformsToGPU()
@@ -77,47 +90,30 @@ inline void Object3D::draw()
 void Object3D::endObjectDefinition()
 {
 	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
+
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);			GL_ERROR();
+	glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getVerticesData(), GL_STATIC_DRAW);		GL_ERROR();
 
+	glGenBuffers(1, &this->color_buffer);						GL_ERROR();
 
-	/*static const GLfloat g_vertex_buffer_data[] = {
-		0.0f, 0.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-		1.0f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
-	};*/
-
-
-
-	glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getVerticesData() , GL_STATIC_DRAW);		GL_ERROR();
+	glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);			GL_ERROR();
+	glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getVerticesColorData(), GL_STATIC_DRAW);		GL_ERROR();
 }
 
 void Object3D::Move(GLenum key)
 {
 	static double lastTime = glfwGetTime();
 
-	position = glm::vec3(x, y, z);
+	//position = glm::vec3(x, y, z);
 
 	current_time = glfwGetTime();
 	delta_time = float(current_time - lastTime);
-	// Direction : Spherical coordinates to Cartesian coordinates conversion
-	direction = glm::vec3(
-		cos(vertical_angle) * sin(horizontal_angle),
-		sin(vertical_angle),
-		cos(vertical_angle) * cos(horizontal_angle)
-		);
 
-	// Right vector
-	right = glm::vec3(
-		sin(horizontal_angle - 3.14f * 0.5f),
-		0,
-		cos(horizontal_angle - 3.14f * 0.5f)
-		);
-
-	// Up vector
-	up = glm::cross(right, direction);
+	if (delta_time > 0.15)
+	{
+		lastTime = current_time;
+		return;
+	}
 	switch (key)
 	{
 	case GLFW_KEY_UP:
@@ -136,6 +132,12 @@ void Object3D::Move(GLenum key)
 	case GLFW_KEY_A:
 		position -= right * delta_time * speed;
 		break;
+	case GLFW_KEY_SPACE:
+		position += glm::vec3(0, 1, 0) * delta_time * speed;
+		break;
+	case GLFW_KEY_LEFT_CONTROL:
+		position -= glm::vec3(0, 1, 0) * delta_time * speed;
+		break;
 	}
 
 	// For the next frame, the "last time" will be "now"
@@ -144,12 +146,12 @@ void Object3D::Move(GLenum key)
 
 void Object3D::calculateMVPMatrix()
 {
-	Move(0);
-	//WindowInterface::GetCursorPos(this->x, this->y);
-	//WindowInterface::SetCursorPosCenter();
+	//Move(0);
+	WindowInterface::GetCursorPos(this->mouse_x, this->mouse_y);
+	WindowInterface::SetCursorPosCenter();
 
-	//horizontal_angle += mouse_speed * float(SCREEN_WIDTH * 0.5f - x);
-	//vertical_angle += mouse_speed * float(SCREEN_HEIGHT * 0.5f - y);
+	horizontal_angle += mouse_speed * float(SCREEN_WIDTH * 0.5f - mouse_x);
+	vertical_angle += mouse_speed * float(SCREEN_HEIGHT * 0.5f - mouse_y);
 
 	if (horizontal_angle > 3.141592f)
 		horizontal_angle = -3.141592f;
@@ -157,27 +159,41 @@ void Object3D::calculateMVPMatrix()
 		horizontal_angle = 3.141592f;
 
 	if (vertical_angle > 3.131592f * 0.5f)
-		vertical_angle = -3.131592f * 0.5f;
-	else if (vertical_angle < -3.131592f * 0.5f)
 		vertical_angle = 3.131592f * 0.5f;
+	else if (vertical_angle < -3.131592f * 0.5f)
+		vertical_angle = -3.131592f * 0.5f;
 
-	
+	direction = glm::vec3(
+		cos(vertical_angle) * sin(horizontal_angle),
+		sin(vertical_angle),
+		cos(vertical_angle) * cos(horizontal_angle)
+		);
+
+	// Right vector
+	right = glm::vec3(
+		sin(horizontal_angle - 3.14f * 0.5f),
+		0,
+		cos(horizontal_angle - 3.14f * 0.5f)
+		);
+
+	// Up vector
+	up = glm::cross(right, direction);
 
 	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	ProjectionMatrix = glm::perspective(initial_FoV, 4.0f / 3.0f, 0.1f, 100.0f);
 	// Camera matrix
-	/*
+	
 	ViewMatrix = glm::lookAt(
 		position,           // Camera is here
 		position + direction, // and looks here : at the same position, plus "direction"
 		up                  // Head is up (set to 0,-1,0 to look upside-down)
 		);
-	*/
-	ViewMatrix = glm::lookAt(
+	
+	/*ViewMatrix = glm::lookAt(
 		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
 		glm::vec3(0, 0, 0), // and looks at the origin
 		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-		);
+		);*/
 
 	ModelMatrix = glm::mat4(1.0f);
 

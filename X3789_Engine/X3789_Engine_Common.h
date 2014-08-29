@@ -16,7 +16,7 @@
 
 struct VertexData
 {
-	glm::vec3 data;
+	float data[3];
 };
 
 struct UniformBase

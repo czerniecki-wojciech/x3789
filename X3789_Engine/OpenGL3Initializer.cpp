@@ -35,11 +35,6 @@ OpenGL3Initializer::OpenGL3Initializer()
 		glfwTerminate();
 		return;
 	}
-	
-	// Enable depth test
-	//glEnable(GL_DEPTH_TEST);
-	// Accept fragment if it closer to the camera than the former one
-	//glDepthFunc(GL_LESS);
 
 	glfwMakeContextCurrent(window); // Initialize GLEW
 	glewExperimental = true; // Needed in core profile
@@ -55,6 +50,11 @@ OpenGL3Initializer::OpenGL3Initializer()
 	WindowHolder::getWindowHolder()->setWindow(window);
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+	
+	// Enable depth test
+	glEnable(GL_DEPTH_TEST);
+	// Accept fragment if it closer to the camera than the former one
+	glDepthFunc(GL_LESS);
 }
 
 OpenGL3Initializer::~OpenGL3Initializer()

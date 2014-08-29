@@ -4,7 +4,7 @@
 class  WindowInterface
 {
 public:
-	static int GetKey(char key)
+	static int GetKey(int key)
 	{
 		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
 		return ::glfwGetKey(window, key);
