@@ -1,28 +1,18 @@
 
 #include "stdafx.h"
 #include <X3789_Engine\WindowInterface.h>
+#include <X3789_Engine\Common\ControlInterface.h>
 #include "VertexStorage.h"
 #include "UniformStorage.h"
 #include "Object3D.h"
 
-
-const float Object3D::speed = 3.0f;
-const float Object3D::mouse_speed = 0.005f;
-const float Object3D::initial_FoV = 45.0f;
 
 Object3D::Object3D()
 	: program_ID(0)
 	, primitive_type(GL_TRIANGLES)
 	, vertices(NULL)
 	, uniforms(NULL)
-	, x(3)
-	, y(3)
-	, z(-15)
-	, horizontal_angle(0.0f)
-	, vertical_angle(0.0f)
-{
-	Move(0); //TMP
-}
+{}
 
 
 Object3D::~Object3D()
@@ -30,13 +20,8 @@ Object3D::~Object3D()
 
 void Object3D::loadVertexToGPU()
 {
-	printDebugInfo();
 	if (!vertices)
 		return;
-
-	
-
-	//glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getData(), GL_STATIC_DRAW);   GL_ERROR();
 
 
 	glEnableVertexAttribArray(0);						   GL_ERROR();
@@ -70,6 +55,9 @@ void Object3D::loadVertexToGPU()
 
 inline void Object3D::loadUniformsToGPU()
 {
+	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, ControlInterface::getMVPData());
+	glUniform3fv(object_position_id, 1, glm::value_ptr(position));
+
 	if (uniforms)
 		this->uniforms->loadToGPU(this->program_ID);
 }
@@ -78,8 +66,6 @@ inline void Object3D::draw()
 {
 	if (this->program_ID)
 		glUseProgram(this->program_ID);
-
-	calculateMVPMatrix();
 
 	loadUniformsToGPU();
 
@@ -98,106 +84,4 @@ void Object3D::endObjectDefinition()
 
 	glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);			GL_ERROR();
 	glBufferData(GL_ARRAY_BUFFER, this->vertices->getVerticesTotalSize(), this->vertices->getVerticesColorData(), GL_STATIC_DRAW);		GL_ERROR();
-}
-
-void Object3D::Move(GLenum key)
-{
-	static double lastTime = glfwGetTime();
-
-	//position = glm::vec3(x, y, z);
-
-	current_time = glfwGetTime();
-	delta_time = float(current_time - lastTime);
-
-	if (delta_time > 0.15)
-	{
-		lastTime = current_time;
-		return;
-	}
-	switch (key)
-	{
-	case GLFW_KEY_UP:
-	case GLFW_KEY_W:
-		position += direction * delta_time * speed;
-		break;
-	case GLFW_KEY_DOWN:
-	case GLFW_KEY_S:
-		position -= direction * delta_time * speed;
-		break;
-	case GLFW_KEY_RIGHT:
-	case GLFW_KEY_D:
-		position += right * delta_time * speed;
-		break;
-	case GLFW_KEY_LEFT:
-	case GLFW_KEY_A:
-		position -= right * delta_time * speed;
-		break;
-	case GLFW_KEY_SPACE:
-		position += glm::vec3(0, 1, 0) * delta_time * speed;
-		break;
-	case GLFW_KEY_LEFT_CONTROL:
-		position -= glm::vec3(0, 1, 0) * delta_time * speed;
-		break;
-	}
-
-	// For the next frame, the "last time" will be "now"
-	lastTime = current_time;
-}
-
-void Object3D::calculateMVPMatrix()
-{
-	//Move(0);
-	WindowInterface::GetCursorPos(this->mouse_x, this->mouse_y);
-	WindowInterface::SetCursorPosCenter();
-
-	horizontal_angle += mouse_speed * float(SCREEN_WIDTH * 0.5f - mouse_x);
-	vertical_angle += mouse_speed * float(SCREEN_HEIGHT * 0.5f - mouse_y);
-
-	if (horizontal_angle > 3.141592f)
-		horizontal_angle = -3.141592f;
-	else if (horizontal_angle < -3.141592f)
-		horizontal_angle = 3.141592f;
-
-	if (vertical_angle > 3.131592f * 0.5f)
-		vertical_angle = 3.131592f * 0.5f;
-	else if (vertical_angle < -3.131592f * 0.5f)
-		vertical_angle = -3.131592f * 0.5f;
-
-	direction = glm::vec3(
-		cos(vertical_angle) * sin(horizontal_angle),
-		sin(vertical_angle),
-		cos(vertical_angle) * cos(horizontal_angle)
-		);
-
-	// Right vector
-	right = glm::vec3(
-		sin(horizontal_angle - 3.14f * 0.5f),
-		0,
-		cos(horizontal_angle - 3.14f * 0.5f)
-		);
-
-	// Up vector
-	up = glm::cross(right, direction);
-
-	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
-	ProjectionMatrix = glm::perspective(initial_FoV, 4.0f / 3.0f, 0.1f, 100.0f);
-	// Camera matrix
-	
-	ViewMatrix = glm::lookAt(
-		position,           // Camera is here
-		position + direction, // and looks here : at the same position, plus "direction"
-		up                  // Head is up (set to 0,-1,0 to look upside-down)
-		);
-	
-	/*ViewMatrix = glm::lookAt(
-		glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
-		glm::vec3(0, 0, 0), // and looks at the origin
-		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
-		);*/
-
-	ModelMatrix = glm::mat4(1.0f);
-
-	MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
-
-	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 }

@@ -6,13 +6,11 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #define GLM_FORCE_RADIANS
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
-
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 768
 
 #define TRILINEAR_FILTERING

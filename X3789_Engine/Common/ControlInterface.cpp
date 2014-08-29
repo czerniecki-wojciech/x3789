@@ -1,111 +1,96 @@
 
 #include "stdafx.h"
 #include <X3789_Engine_Common.h>
+#include <X3789_Engine\WindowInterface.h>
 
 #include "ControlInterface.h"
 
-//extern GLFWwindow* window;
+ControlInterface* ControlInterface::instance = NULL;
+float ControlInterface::speed = 3.0f;
+float ControlInterface::mouse_speed = 0.005f;
 
-glm::mat4 ViewMatrix;
-glm::mat4 ProjectionMatrix;
 
-glm::mat4 getViewMatrix(){
-	return ViewMatrix;
-}
-glm::mat4 getProjectionMatrix(){
-	return ProjectionMatrix;
-}
+void ControlInterface::computeMVP()
+{
+	static double last_time = glfwGetTime();
 
-//extern GLFWwindow* window;
-
-// Initial position and angles
-glm::vec3 position = glm::vec3(0, 0, -5);
-float horizontalAngle = 0.0f;
-float verticalAngle = 0.0f;
-float initialFoV = 45.0f;
-
-float speed = 3.0f;
-float mouseSpeed = 0.005f;
-
-double xpos, ypos;
-double currentTime;
-float deltaTime;
-
-void computeMatricesFromInputs(){
-	/*
-	// glfwGetTime is called only once, the first time this function is called
-	static double lastTime = glfwGetTime();
-
-	// Compute time difference between current and last frame
-	currentTime = glfwGetTime();
-	deltaTime = float(currentTime - lastTime);
-	//GLFWwindow window;
-	glfwGetCursorPos(window, &xpos, &ypos);
-
-	// Reset mouse position for next frame
-	glfwSetCursorPos(window, SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f); // 1024/2 768/2
-
-	// Compute new orientation
-	horizontalAngle += mouseSpeed * float(SCREEN_WIDTH * 0.5f - xpos);
-	verticalAngle += mouseSpeed * float(SCREEN_HEIGHT * 0.5f - ypos);
-
-	if (horizontalAngle > 3.141592f)
-		horizontalAngle = -3.141592f;
-	else if (horizontalAngle < -3.141592f)
-		horizontalAngle = 3.141592f;
-
-	if (verticalAngle > 3.131592f * 0.5f)
-		verticalAngle = 3.131592f * 0.5f;
-	else if (verticalAngle < -3.131592f * 0.5f)
-		verticalAngle = -3.131592f * 0.5f;
-
-	// Direction : Spherical coordinates to Cartesian coordinates conversion
-	glm::vec3 direction(
-		cos(verticalAngle) * sin(horizontalAngle),
-		sin(verticalAngle),
-		cos(verticalAngle) * cos(horizontalAngle)
-		);
-
-	// Right vector
-	glm::vec3 right = glm::vec3(
-		sin(horizontalAngle - 3.14f * 0.5f),
-		0,
-		cos(horizontalAngle - 3.14f * 0.5f)
-		);
-
-	// Up vector
-	glm::vec3 up = glm::cross(right, direction);
-
-	// Move forward
-	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS){
-		position += direction * deltaTime * speed;
+	current_time = glfwGetTime();
+	delta_time = float(current_time - last_time);
+	
+	if (delta_time > 0.15)
+	{
+		last_time = current_time;
+		return;
 	}
-	// Move backward
-	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS){
-		position -= direction * deltaTime * speed;
-	}
-	// Strafe right
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS){
-		position += right * deltaTime * speed;
-	}
-	// Strafe left
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS){
-		position -= right * deltaTime * speed;
-	}
+
+	this->performMouseAction();
+	this->performKeyboardAction();
 
 	//float FoV = initialFoV;// - 5 * glfwGetMouseWheel(); // Now GLFW 3 requires setting up a callback for this. It's a bit too complicated for this beginner's tutorial, so it's disabled instead.
 
-	// Projection matrix : 45° Field of View, 4:3 ratio, display range : 0.1 unit <-> 100 units
 	ProjectionMatrix = glm::perspective(initialFoV, 4.0f / 3.0f, 0.1f, 100.0f);
-	// Camera matrix
 	ViewMatrix = glm::lookAt(
 		position,           // Camera is here
 		position + direction, // and looks here : at the same position, plus "direction"
 		up                  // Head is up (set to 0,-1,0 to look upside-down)
 		);
 
-	// For the next frame, the "last time" will be "now"
-	lastTime = currentTime;
-	*/
+	ModelMatrix = glm::mat4(1.0f);
+
+	MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
+
+	last_time = current_time;
+
+	printDebugInfo();
 }
 
+
+void ControlInterface::performMouseAction()
+{
+	WindowInterface::GetCursorPos(this->x_pos, this->y_pos);
+	WindowInterface::SetCursorPosCenter();
+
+	horizontal_angle += mouse_speed * float(SCREEN_WIDTH * 0.5f - x_pos);
+	vertical_angle += mouse_speed * float(SCREEN_HEIGHT * 0.5f - y_pos);
+
+	if (horizontal_angle > 3.141592f)
+		horizontal_angle = -3.141592f;
+	else if (horizontal_angle < -3.141592f)
+		horizontal_angle = 3.141592f;
+
+	if (vertical_angle > 3.131592f * 0.5f)
+		vertical_angle = 3.131592f * 0.5f;
+	else if (vertical_angle < -3.131592f * 0.5f)
+		vertical_angle = -3.131592f * 0.5f;
+
+	direction = glm::vec3(
+		cos(vertical_angle) * sin(horizontal_angle),
+		sin(vertical_angle),
+		cos(vertical_angle) * cos(horizontal_angle)
+		);
+
+	right = glm::vec3(
+		sin(horizontal_angle - 3.14f * 0.5f),
+		0,
+		cos(horizontal_angle - 3.14f * 0.5f)
+		);
+
+	up = glm::cross(right, direction);
+}
+
+
+void ControlInterface::performKeyboardAction()
+{
+	if (WindowInterface::GetKey(GLFW_KEY_UP) || WindowInterface::GetKey(GLFW_KEY_W))
+		position += direction * delta_time * speed;
+	if (WindowInterface::GetKey(GLFW_KEY_DOWN) || WindowInterface::GetKey(GLFW_KEY_S))
+		position -= direction * delta_time * speed;
+	if (WindowInterface::GetKey(GLFW_KEY_RIGHT) || WindowInterface::GetKey(GLFW_KEY_D))
+		position += right * delta_time * speed;
+	if (WindowInterface::GetKey(GLFW_KEY_LEFT) || WindowInterface::GetKey(GLFW_KEY_A))
+		position -= right * delta_time * speed;
+	if (WindowInterface::GetKey(GLFW_KEY_SPACE))
+		position += glm::vec3(0, 1, 0) * delta_time * speed;
+	if (WindowInterface::GetKey(GLFW_KEY_LEFT_CONTROL))
+		position -= glm::vec3(0, 1, 0) * delta_time * speed;
+}

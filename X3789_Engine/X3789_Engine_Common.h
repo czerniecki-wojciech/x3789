@@ -9,8 +9,8 @@
 #	define EXT
 #endif
 
-#define SCREEN_WIDTH 1024
-#define SCREEN_HEIGHT 768
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
 #define CUBE_SIZE 1.0f
 

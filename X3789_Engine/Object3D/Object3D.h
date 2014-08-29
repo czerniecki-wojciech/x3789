@@ -13,6 +13,7 @@ protected:
 	GLuint vertex_buffer;
 	GLuint color_buffer;
 	GLuint MatrixID;
+	GLuint object_position_id;
 
 	VertexStorage* vertices;
 	UniformStorage* uniforms;
@@ -20,43 +21,19 @@ protected:
 	void loadVertexToGPU();
 	void loadUniformsToGPU();
 
-	float x, y, z;
-	float horizontal_angle;
-	float vertical_angle;
-
-	float current_time;
-	float delta_time;
-
-	glm::mat4 ViewMatrix;
-	glm::mat4 ProjectionMatrix;
-	glm::mat4 ModelMatrix;
-
-	glm::mat4 MVP;
-
 	glm::vec3 position;
-
-	glm::vec3 direction;
-	glm::vec3 right;
-	glm::vec3 up;
-
-	static const float initial_FoV;
-	static const float speed;
-	static const float mouse_speed;
-
-	float mouse_x, mouse_y;
 public:
 	Object3D();
 	~Object3D();
 
 	void draw();
 	void endObjectDefinition();
-	void calculateMVPMatrix();
-	void Move(GLenum key);
 
 	inline void setProgram(GLuint program_ID)
 	{
 		this->program_ID = program_ID;
 		MatrixID = glGetUniformLocation(this->program_ID, "MVP");
+		object_position_id = glGetUniformLocation(this->program_ID, "object_position");
 	}
 
 	inline GLuint getProgram()
@@ -77,13 +54,6 @@ public:
 	inline void setPosition(float x, float y, float z)
 	{
 		this->position = glm::vec3(x, y, z);
-	}
-
-	inline void printDebugInfo()
-	{
-		printf("(%f, %f, %f) \t h: %f v: %f\n", position.x, position.y, position.z, horizontal_angle, vertical_angle);
-		//horizontal_angle += 0.01f;
-		//vertical_angle += 0.05f;
 	}
 };
 
