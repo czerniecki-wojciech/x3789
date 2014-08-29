@@ -3,9 +3,6 @@
 #include <../X3789_Engine/WindowHolder.h>
 #include "OpenGL3Initializer.h"
 
-
-//GLFWwindow* window;
-
 OpenGL3Initializer::OpenGL3Initializer()
 {
 	if (!glfwInit())
@@ -20,8 +17,6 @@ OpenGL3Initializer::OpenGL3Initializer()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); //We don't want the old OpenGL
 
-	// Open a window and create its OpenGL context
-	//GLFWwindow* window; // (In the accompanying source code, this variable is global)
 	GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
 
 	char title[70];
@@ -36,24 +31,20 @@ OpenGL3Initializer::OpenGL3Initializer()
 		return;
 	}
 
-	glfwMakeContextCurrent(window); // Initialize GLEW
-	glewExperimental = true; // Needed in core profile
+	glfwMakeContextCurrent(window);
+	glewExperimental = true;
 	if (glewInit() != GLEW_OK)
 	{
 	fprintf(stderr, "Failed to initialize GLEW\n");
 	return;
 	}
 
-	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	WindowHolder::getWindowHolder()->setWindow(window);
-	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
 	
-	// Enable depth test
 	glEnable(GL_DEPTH_TEST);
-	// Accept fragment if it closer to the camera than the former one
 	glDepthFunc(GL_LESS);
 }
 
