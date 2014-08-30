@@ -58,10 +58,10 @@ void ControlInterface::performMouseAction()
 	else if (horizontal_angle < -3.141592f)
 		horizontal_angle = 3.141592f;
 
-	if (vertical_angle > 3.131592f * 0.5f)
-		vertical_angle = 3.131592f * 0.5f;
-	else if (vertical_angle < -3.131592f * 0.5f)
-		vertical_angle = -3.131592f * 0.5f;
+	if (vertical_angle > 3.141592f * 0.5f)
+		vertical_angle = 3.141592f * 0.5f;
+	else if (vertical_angle < -3.141592f * 0.5f)
+		vertical_angle = -3.141592f * 0.5f;
 
 	direction = glm::vec3(
 		cos(vertical_angle) * sin(horizontal_angle),

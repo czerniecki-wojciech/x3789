@@ -12,7 +12,8 @@ protected:
 	GLenum primitive_type;
 	GLuint vertex_buffer;
 	GLuint color_buffer;
-	GLuint MatrixID;
+
+	GLuint mvp_id;
 	GLuint object_position_id;
 
 	VertexStorage* vertices;
@@ -32,7 +33,7 @@ public:
 	inline void setProgram(GLuint program_ID)
 	{
 		this->program_ID = program_ID;
-		MatrixID = glGetUniformLocation(this->program_ID, "MVP");
+		mvp_id = glGetUniformLocation(this->program_ID, "MVP");
 		object_position_id = glGetUniformLocation(this->program_ID, "object_position");
 	}
 

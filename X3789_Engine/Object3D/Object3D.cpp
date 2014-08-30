@@ -55,7 +55,7 @@ void Object3D::loadVertexToGPU()
 
 inline void Object3D::loadUniformsToGPU()
 {
-	glUniformMatrix4fv(MatrixID, 1, GL_FALSE, ControlInterface::getMVPData());
+	glUniformMatrix4fv(mvp_id, 1, GL_FALSE, ControlInterface::getMVPData());
 	glUniform3fv(object_position_id, 1, glm::value_ptr(position));
 
 	if (uniforms)
