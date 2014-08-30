@@ -1,5 +1,6 @@
 
 #include "stdafx.h"
+#include <X3789_Engine\ShaderInterface.h>
 #include <X3789_Engine\WindowInterface.h>
 #include <X3789_Engine\Common\ControlInterface.h>
 #include "VertexStorage.h"
@@ -8,10 +9,10 @@
 
 
 Object3D::Object3D()
-	: program_ID(0)
-	, primitive_type(GL_TRIANGLES)
+	: primitive_type(GL_TRIANGLES)
 	, vertices(NULL)
 	, uniforms(NULL)
+	, shader(-1)
 {}
 
 
@@ -59,13 +60,12 @@ inline void Object3D::loadUniformsToGPU()
 	glUniform3fv(object_position_id, 1, glm::value_ptr(position));
 
 	if (uniforms)
-		this->uniforms->loadToGPU(this->program_ID);
+		this->uniforms->loadToGPU(this->shader);
 }
 
 inline void Object3D::draw()
 {
-	if (this->program_ID)
-		glUseProgram(this->program_ID);
+	glUseProgram(this->shader);
 
 	loadUniformsToGPU();
 
@@ -75,6 +75,9 @@ inline void Object3D::draw()
 
 void Object3D::endObjectDefinition()
 {
+	if (shader == -1)
+		this->setShader(SHADER_DEFAULT_SOLID);
+
 	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
 
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);			GL_ERROR();

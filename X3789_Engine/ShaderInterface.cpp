@@ -8,12 +8,16 @@
 ShaderInterface* ShaderInterface::instance = NULL;
 
 ShaderInterface::ShaderInterface()
-{}
+{
+	this->loadShaders();
+}
 
 ShaderInterface::~ShaderInterface()
 {}
 
-GLuint ShaderInterface::loadBasicShader()
+void ShaderInterface::loadShaders()
 {
-	return ShaderLoader::loadShader("Shaders/SimpleVertexShader.vertexshader", "Shaders/SimpleFragmentShader.fragmentshader");
+	shaders_id[SHADER_DEFAULT_SOLID] =  ShaderLoader::loadShader("Shaders/SimpleVertexShader.vertexshader", "Shaders/SimpleFragmentShader.fragmentshader");
+
+	//shaders_id[SHADER_DEFAULT_TEXTURED] = ShaderLoader::loadShader("Shaders/TextureVertexShader.vertexshader", "Shaders/TextureFragmentShader.fragmentshader");
 }

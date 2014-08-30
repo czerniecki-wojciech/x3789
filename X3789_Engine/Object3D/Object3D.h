@@ -8,7 +8,7 @@ class UniformStorage;
 class DLL_INTERFACE Object3D
 {
 protected:
-	GLuint program_ID;
+	GLuint shader;
 	GLenum primitive_type;
 	GLuint vertex_buffer;
 	GLuint color_buffer;
@@ -30,16 +30,16 @@ public:
 	void draw();
 	void endObjectDefinition();
 
-	inline void setProgram(GLuint program_ID)
+	inline void setShader(GLuint shader_id)
 	{
-		this->program_ID = program_ID;
-		mvp_id = glGetUniformLocation(this->program_ID, "MVP");
-		object_position_id = glGetUniformLocation(this->program_ID, "object_position");
+		this->shader = ShaderInterface::getInstance()->getShader(shader_id);
+		mvp_id = glGetUniformLocation(this->shader, "MVP");
+		object_position_id = glGetUniformLocation(this->shader, "object_position");
 	}
 
-	inline GLuint getProgram()
+	inline GLuint getShader()
 	{
-		return this->program_ID;
+		return this->shader;
 	}
 	
 	inline void setPrimitiveType(GLenum primitive_type)
@@ -49,7 +49,7 @@ public:
 
 	inline GLenum getPrimitiveType()
 	{
-		return this->program_ID;
+		return this->primitive_type;
 	}
 
 	inline void setPosition(float x, float y, float z)

@@ -5,8 +5,10 @@ class DLL_INTERFACE ShaderInterface
 {
 private:
 	static ShaderInterface* instance;
-
+	GLuint shaders_id[2];
 	ShaderInterface();
+
+	void loadShaders();
 
 public:
 	static ShaderInterface* getInstance()
@@ -16,7 +18,10 @@ public:
 		return instance;
 	}
 
-	GLuint loadBasicShader();
+	GLuint getShader(unsigned short shader_name)
+	{
+		return shaders_id[shader_name];
+	}
 
 	~ShaderInterface();
 };

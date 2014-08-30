@@ -2,11 +2,13 @@
 #include "stdafx.h"
 #include <X3789_Engine\Object3D\VertexStorage.h>
 //#include "UniformStorage.h"
+#include <X3789_Engine\ShaderInterface.h>
 #include <X3789_Engine\Object3D\Object3D.h>
 #include "Cube.h"
 
 
 Cube::Cube()
+	: Object3D()
 {
 	vertices = new VertexStorage(12);
 

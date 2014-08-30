@@ -42,7 +42,6 @@ public:
 	}
 	inline void bindToProgram(GLuint program_ID, char* sampler_name)
 	{
-		this->sampler_ID = sampler_ID;
 		uniform_ID = glGetUniformLocation(program_ID, sampler_name);
 	}
 	inline void loadToUniform(){

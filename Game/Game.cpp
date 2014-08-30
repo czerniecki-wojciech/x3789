@@ -3,11 +3,11 @@
 #include <Windows.h>
 
 #include <X3789_Engine\X3789_Engine_Common.h>
+#include <X3789_Engine\ShaderInterface.h>
 #include <X3789_Engine\Object3D\Object3D.h>
 #include <X3789_Engine\Object3D\Primitives\Cube.h>
 #include <X3789_Engine\WindowHolder.h>
 #include <X3789_Engine\WindowInterface.h>
-#include <X3789_Engine\ShaderInterface.h>
 #include <X3789_Engine\Common\ControlInterface.h>
 
 glm::mat4 MVP;
@@ -29,12 +29,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	LoadLibrary("X3789_Engine");
 	LoadLibrary("SandBox");
 
-	GLuint programID = ShaderInterface::getInstance()->loadBasicShader();
+	ShaderInterface::getInstance();
 
 	Cube cube;
 	Cube cube2;
-	cube.setProgram(programID);
-	cube2.setProgram(programID);
 	cube2.setPosition(3, 0, 0);
 
 	WindowInterface::SetCursorPosCenter();
