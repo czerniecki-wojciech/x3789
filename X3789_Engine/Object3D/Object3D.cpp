@@ -3,6 +3,7 @@
 #include <X3789_Engine\ShaderInterface.h>
 #include <X3789_Engine\WindowInterface.h>
 #include <X3789_Engine\Common\ControlInterface.h>
+#include <X3789_Engine\Common\TextureStorage.h>
 #include "VertexStorage.h"
 #include "UniformStorage.h"
 #include "Object3D.h"
@@ -36,18 +37,26 @@ void Object3D::loadVertexToGPU()
 		(void*)0							// array buffer offset
 		);	GL_ERROR();
 
-	
-	glEnableVertexAttribArray(1);						   GL_ERROR();
-	glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);	   GL_ERROR();
-	glVertexAttribPointer(
-		1,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-		3,									// size (how many floats define vertex)
-		GL_FLOAT,							// type
-		GL_FALSE,							// normalized?
-		0,									// stride
-		(void*)0							// array buffer offset
-		);	GL_ERROR();
-	
+	// disabled for now
+	//if (checkShader(SHADER_DEFAULT_SOLID))
+	//{
+		glEnableVertexAttribArray(1);						   GL_ERROR();
+		glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);	   GL_ERROR();
+		glVertexAttribPointer(
+			1,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+			3,									// size (how many floats define vertex)
+			GL_FLOAT,							// type
+			GL_FALSE,							// normalized?
+			0,									// stride
+			(void*)0							// array buffer offset
+			);	GL_ERROR();
+	//}
+
+	if (checkShader(SHADER_DEFAULT_TEXTURED))
+	{
+		TextureStorage::useTexture(TEXTURE_SKY, this->shader);
+	}
+
 	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum());	GL_ERROR();
 
 	glDisableVertexAttribArray(0);	GL_ERROR();

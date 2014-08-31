@@ -41,7 +41,7 @@ void ControlInterface::computeMVP()
 
 	last_time = current_time;
 
-	printDebugInfo();
+	//printDebugInfo();
 }
 
 

@@ -9,30 +9,20 @@
 #include <X3789_Engine\WindowHolder.h>
 #include <X3789_Engine\WindowInterface.h>
 #include <X3789_Engine\Common\ControlInterface.h>
+#include <X3789_Engine\Common\TextureStorage.h>
 
-glm::mat4 MVP;
-
-float x = 4;
-float z = 4;
-
-/*void calculateMVP()
-{
-	computeMatricesFromInputs();
-	glm::mat4 ProjectionMatrix = getProjectionMatrix();
-	glm::mat4 ViewMatrix = getViewMatrix();
-	glm::mat4 ModelMatrix = glm::mat4(1.0);
-	MVP = ProjectionMatrix * ViewMatrix * ModelMatrix;
-}
-*/
 int _tmain(int argc, _TCHAR* argv[])
 {
 	LoadLibrary("X3789_Engine");
 	LoadLibrary("SandBox");
 
 	ShaderInterface::getInstance();
+	TextureStorage::init();
 
 	Cube cube;
+	cube.setShader(SHADER_DEFAULT_TEXTURED);
 	Cube cube2;
+	cube2.setShader(SHADER_DEFAULT_TEXTURED);
 	cube2.setPosition(3, 0, 0);
 
 	WindowInterface::SetCursorPosCenter();
@@ -44,8 +34,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		cube.draw();
 		cube2.draw();
 		WindowInterface::endFrameDraw();
-	} while (WindowInterface::GetKey(GLFW_KEY_ESCAPE) != GLFW_PRESS && WindowInterface::WindowShouldClose() == 0);
+	} while(!WindowInterface::GetKey(GLFW_KEY_ESCAPE) && !WindowInterface::WindowShouldClose());
 
 	return 0;
 }
-

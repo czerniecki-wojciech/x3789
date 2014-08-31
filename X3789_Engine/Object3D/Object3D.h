@@ -12,6 +12,7 @@ protected:
 	GLenum primitive_type;
 	GLuint vertex_buffer;
 	GLuint color_buffer;
+	GLuint uv_buffer;
 
 	GLuint mvp_id;
 	GLuint object_position_id;
@@ -29,6 +30,11 @@ public:
 
 	void draw();
 	void endObjectDefinition();
+
+	inline bool checkShader(GLuint shader)
+	{
+		return this->shader == ShaderInterface::getInstance()->getShader(shader);
+	}
 
 	inline void setShader(GLuint shader_id)
 	{

@@ -17,10 +17,24 @@
 #define SHADER_DEFAULT_SOLID		0x00
 #define SHADER_DEFAULT_TEXTURED		0x01
 
+enum Texture
+{
+	TEXTURE_TEST = 0,
+	TEXTURE_SKY,
+
+	TOTAL_TEXTURE_NUM
+};
+
 struct VertexData
 {
 	float data[3];
 };
+
+struct ColorData : public VertexData
+{};
+
+struct UVData : public VertexData
+{};
 
 struct UniformBase
 {

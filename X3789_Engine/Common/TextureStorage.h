@@ -1,13 +1,18 @@
 #pragma once
 
-class TextureStorage
+class TextureBMP;
+
+class DLL_INTERFACE TextureStorage
 {
 private:
-	static TextureBMP* textures[8];
+	static TextureStorage* instance;
+	static TextureBMP* textures[TOTAL_TEXTURE_NUM];
 	unsigned short loaded_textures;
+	TextureStorage();
+	
 public:
+	/*
 	bool loadBMPTexture(char* filename);
-
 	void bindTexture(GLuint program_ID, char* samplerName, short texture_index);
 
 	inline void loadToUnifom(){
@@ -16,15 +21,21 @@ public:
 			textures[i]->loadToUniform();
 		}
 	}
+	*/
 
-	unsigned short getLoadedTextureNum()
+	unsigned short getTextureNum()
 	{
-		return loaded_textures;
+		return TOTAL_TEXTURE_NUM;
 	}
 
-	TextureStorage()
-		:loaded_textures(0)
-	{}
+	static void useTexture(Texture texture, GLuint shader, char* sampler_name = "texture0");
+
+	static TextureStorage* init()
+	{
+		if (!instance)
+			instance = new TextureStorage();
+		return instance;
+	}
 
 	~TextureStorage();
 };

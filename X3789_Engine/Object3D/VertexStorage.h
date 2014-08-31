@@ -5,7 +5,12 @@ class DLL_INTERFACE VertexStorage
 {
 	static const unsigned int size_of_vertex;
 	VertexData* vertices;
-	VertexData* colors;
+	
+	union{
+		ColorData* colors;
+		UVData* uv;
+	};
+
 	unsigned int vertices_num;
 	unsigned int allocated_vertices_num;
 
@@ -26,9 +31,14 @@ public:
 		return this->vertices;
 	}
 
-	VertexData* getVerticesColorData()
+	ColorData* getVerticesColorData()
 	{
 		return this->colors;
+	}
+
+	UVData* getUVData()
+	{
+		return this->uv;
 	}
 
 	unsigned int getVerticesNum()

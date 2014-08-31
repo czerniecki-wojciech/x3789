@@ -6,9 +6,9 @@ class TextureBMP
 	unsigned int width, height;
 	unsigned int imageSize;
 	unsigned char* data;
+
 	GLuint texture_ID;
 	GLuint sampler_ID;
-	GLuint uniform_ID;
 public:
 	TextureBMP()
 		:dataPos(0)
@@ -16,6 +16,7 @@ public:
 		, height(0)
 		, imageSize(0)
 		, data(0)
+		, sampler_ID(-1)
 	{}
 	TextureBMP(char* filename);
 	~TextureBMP();
@@ -40,9 +41,15 @@ public:
 	{
 		return texture_ID;
 	}
-	inline void bindToProgram(GLuint program_ID, char* sampler_name)
+	inline void bindToProgram(GLuint shader, char* sampler_name)
 	{
-		uniform_ID = glGetUniformLocation(program_ID, sampler_name);
+		if (sampler_ID > -1)
+		{
+			glDeleteTextures(1, &sampler_ID);
+			sampler_ID = -1;
+		}
+
+		sampler_ID = glGetUniformLocation(shader, sampler_name);
 	}
 	inline void loadToUniform(){
 		glActiveTexture(GL_TEXTURE0);
