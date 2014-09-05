@@ -17,7 +17,7 @@
 #define SHADER_DEFAULT_SOLID		0x00
 #define SHADER_DEFAULT_TEXTURED		0x01
 
-#define VSYNC
+//#define VSYNC
 #ifndef VSYNC
 #	define VSYNC_ENABLED 0
 #else
