@@ -4,6 +4,7 @@
 
 class VertexStorage;
 class UniformStorage;
+class SHaderInterface;
 
 class DLL_INTERFACE Object3D
 {
@@ -20,15 +21,16 @@ protected:
 	VertexStorage* vertices;
 	UniformStorage* uniforms;
 
+	void loadStandarUniformsToGPU();
+	void loadExtraUniformsToGPU();
 	void loadVertexToGPU();
-	void loadUniformsToGPU();
 
 	glm::vec3 position;
 public:
 	Object3D();
-	~Object3D();
+	virtual ~Object3D();
 
-	void draw();
+	void draw(bool reload_uniforms = true);
 	void endObjectDefinition();
 
 	inline bool checkShader(GLuint shader)

@@ -82,6 +82,9 @@
     <ClCompile Include="Object3D\UniformCreator.cpp">
       <Filter>Source Files\Object3D</Filter>
     </ClCompile>
+    <ClCompile Include="Object3D\Object3DDrawer.cpp">
+      <Filter>Source Files\Object3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -135,8 +138,8 @@
     <ClInclude Include="Object3D\UniformCreator.h">
       <Filter>Header Files\Object3D</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="Object3D\Object3DDrawer.h">
+      <Filter>Header Files\Object3D</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

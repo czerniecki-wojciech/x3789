@@ -46,7 +46,7 @@ TextureBMP::TextureBMP(char* filename)
 	
 	delete[] data;
 
-//#define TRILINEAR_FILTERING
+#define TRILINEAR_FILTERING
 #ifdef TRILINEAR_FILTERING
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

@@ -17,6 +17,13 @@
 #define SHADER_DEFAULT_SOLID		0x00
 #define SHADER_DEFAULT_TEXTURED		0x01
 
+#define VSYNC
+#ifndef VSYNC
+#	define VSYNC_ENABLED 0
+#else
+#	define VSYNC_ENABLED 1
+#endif
+
 enum Texture
 {
 	TEXTURE_TEST = 0,

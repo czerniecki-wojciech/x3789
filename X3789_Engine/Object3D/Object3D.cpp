@@ -52,34 +52,39 @@ void Object3D::loadVertexToGPU()
 			);	GL_ERROR();
 	//}
 
-	if (checkShader(SHADER_DEFAULT_TEXTURED))
-	{
-		TextureStorage::useTexture(TEXTURE_SKY, this->shader);
-	}
-
 	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum());	GL_ERROR();
 
-	glDisableVertexAttribArray(0);	GL_ERROR();
 	glDisableVertexAttribArray(1);	GL_ERROR();
+	glDisableVertexAttribArray(0);	GL_ERROR();
 }
 
-inline void Object3D::loadUniformsToGPU()
+inline void Object3D::loadStandarUniformsToGPU()
 {
 	glUniformMatrix4fv(mvp_id, 1, GL_FALSE, ControlInterface::getMVPData());
 	glUniform3fv(object_position_id, 1, glm::value_ptr(position));
-
-	if (uniforms)
-		this->uniforms->loadToGPU(this->shader);
 }
 
-inline void Object3D::draw()
+inline void Object3D::loadExtraUniformsToGPU()
 {
-	glUseProgram(this->shader);
+	if (uniforms)
+		this->uniforms->loadToGPU(this->shader);
 
-	loadUniformsToGPU();
+	if (checkShader(SHADER_DEFAULT_TEXTURED))
+	{
+		TextureStorage::useTexture(TEXTURE_TEST, this->shader);
+	}
+}
 
+inline void Object3D::draw(bool reload_uniforms)
+{
+	if (reload_uniforms)
+	{
+		glUseProgram(this->shader);
+		loadExtraUniformsToGPU();
+	}
+
+	loadStandarUniformsToGPU();
 	loadVertexToGPU();
-
 }
 
 void Object3D::endObjectDefinition()
