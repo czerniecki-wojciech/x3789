@@ -17,9 +17,19 @@ ShaderInterface::~ShaderInterface()
 
 void ShaderInterface::loadShaders()
 {
-	shaders_id[SHADER_DEFAULT_SOLID] =  ShaderLoader::loadShader("Shaders/SimpleVertexShader.vertexshader", "Shaders/SimpleFragmentShader.fragmentshader");
+	//shaders_id[SHADER_DEFAULT_SOLID] =  ShaderLoader::loadShader("Shaders/SimpleVertexShader.vertexshader", "Shaders/SimpleFragmentShader.fragmentshader");
+	shaders_id[SHADER_DEFAULT_SOLID] = ShaderLoader::createShader();
+	ShaderLoader::attachShader(shaders_id[SHADER_DEFAULT_SOLID], "Shaders/SimpleFragmentShader.fragmentshader", GL_FRAGMENT_SHADER);
+	ShaderLoader::attachShader(shaders_id[SHADER_DEFAULT_SOLID], "Shaders/SimpleVertexShader.vertexshader", GL_VERTEX_SHADER);
+	ShaderLoader::linkShader(shaders_id[SHADER_DEFAULT_SOLID]);
 
-	shaders_id[SHADER_DEFAULT_TEXTURED] = ShaderLoader::loadShader("Shaders/TextureVertexShader.vertexshader", "Shaders/TexturePixelShader.pixelshader");
+	shaders_id[SHADER_DEFAULT_TEXTURED] = ShaderLoader::createShader();
+	ShaderLoader::attachShader(shaders_id[SHADER_DEFAULT_TEXTURED], "Shaders/TexturePixelShader.pixelshader", GL_FRAGMENT_SHADER);
+	ShaderLoader::attachShader(shaders_id[SHADER_DEFAULT_TEXTURED], "Shaders/TextureVertexShader.vertexshader", GL_VERTEX_SHADER);
+	ShaderLoader::linkShader(shaders_id[SHADER_DEFAULT_TEXTURED]);
+
+
+	//shaders_id[SHADER_DEFAULT_TEXTURED] = ShaderLoader::loadShader("Shaders/TextureVertexShader.vertexshader", "Shaders/TexturePixelShader.pixelshader");
 
 	//shaders_id[SHADER_DEFAULT_TEXTURED] = ShaderLoader::loadShader("Shaders/TextureVertexShader.vertexshader", "Shaders/TextureFragmentShader.fragmentshader");
 }

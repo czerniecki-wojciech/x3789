@@ -33,12 +33,12 @@ public:
 	void draw(bool reload_uniforms = true);
 	void endObjectDefinition();
 
-	inline bool checkShader(GLuint shader)
+	inline bool checkShader(Shader shader)
 	{
 		return this->shader == ShaderInterface::getInstance()->getShader(shader);
 	}
 
-	inline void setShader(GLuint shader_id)
+	inline void setShader(Shader shader_id)
 	{
 		this->shader = ShaderInterface::getInstance()->getShader(shader_id);
 		mvp_id = glGetUniformLocation(this->shader, "MVP");

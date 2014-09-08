@@ -14,8 +14,13 @@
 
 #define CUBE_SIZE 1.0f
 
-#define SHADER_DEFAULT_SOLID		0x00
-#define SHADER_DEFAULT_TEXTURED		0x01
+enum Shader
+{
+	SHADER_DEFAULT_SOLID		= 0x00,
+	SHADER_DEFAULT_TEXTURED		= 0x01,
+
+	SHADER_TOTAL_NUM
+};
 
 //#define VSYNC
 #ifndef VSYNC

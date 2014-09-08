@@ -5,7 +5,7 @@ class DLL_INTERFACE ShaderInterface
 {
 private:
 	static ShaderInterface* instance;
-	GLuint shaders_id[2];
+	GLuint shaders_id[SHADER_TOTAL_NUM];
 	ShaderInterface();
 
 	void loadShaders();
@@ -18,7 +18,7 @@ public:
 		return instance;
 	}
 
-	GLuint getShader(unsigned short shader_name)
+	GLuint getShader(Shader shader_name)
 	{
 		return shaders_id[shader_name];
 	}

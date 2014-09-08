@@ -98,3 +98,68 @@ GLuint ShaderLoader::loadShader(const char * vertex_file_path, const char * frag
 
 	return ProgramID;
 }
+
+GLuint ShaderLoader::createShader()
+{
+	return glCreateProgram();
+}
+
+bool ShaderLoader::attachShader(GLuint shader_id, const char* file_path, GLuint shader_type)
+{
+	// Create the shaders
+	GLuint sub_shader_id = glCreateShader(shader_type);
+
+	// Read the Shader code from the file
+	std::string ShaderCode;
+	std::ifstream ShaderStream(file_path, std::ios::in);
+	if (ShaderStream.is_open())
+	{
+		std::string Line = "";
+		while (getline(ShaderStream, Line))
+			ShaderCode += "\n" + Line;
+		ShaderStream.close();
+	}
+	else
+	{
+		printf("ERROR: cant read shader source file(%s).\n", file_path);
+		return 0;
+	}
+
+	GLint Result = GL_FALSE;
+	int InfoLogLength;
+
+	// Compile Shader
+	printf("Compiling shader : %s\n", file_path);
+	char const * SourcePointer = ShaderCode.c_str();
+	glShaderSource(sub_shader_id, 1, &SourcePointer, NULL);
+	glCompileShader(sub_shader_id);
+
+	// Check Shader
+	glGetShaderiv(sub_shader_id, GL_COMPILE_STATUS, &Result);
+	glGetShaderiv(sub_shader_id, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	std::vector<char> ShaderErrorMessage(InfoLogLength);
+	glGetShaderInfoLog(sub_shader_id, InfoLogLength, NULL, &ShaderErrorMessage[0]);
+	if (ShaderErrorMessage[0])
+		fprintf(stdout, "%s\n", &ShaderErrorMessage[0]);
+
+	glAttachShader(shader_id, sub_shader_id);
+
+	// Check the program
+	glGetProgramiv(shader_id, GL_LINK_STATUS, &Result);
+	glGetProgramiv(shader_id, GL_INFO_LOG_LENGTH, &InfoLogLength);
+	std::vector<char> ProgramErrorMessage(std::max(InfoLogLength, int(1)));
+	glGetProgramInfoLog(shader_id, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+	if (ProgramErrorMessage[0])
+		fprintf(stdout, "%s\n", &ProgramErrorMessage[0]);
+
+	//glDeleteShader(sub_shader_id);
+
+	return true;
+}
+
+bool ShaderLoader::linkShader(GLuint shader_id)
+{
+	glLinkProgram(shader_id);
+
+	return true;
+}
