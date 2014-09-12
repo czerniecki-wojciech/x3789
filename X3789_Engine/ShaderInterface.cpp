@@ -28,6 +28,12 @@ void ShaderInterface::loadShaders()
 	ShaderLoader::attachShader(shaders_id[SHADER_DEFAULT_TEXTURED], "Shaders/TextureVertexShader.vertexshader", GL_VERTEX_SHADER);
 	ShaderLoader::linkShader(shaders_id[SHADER_DEFAULT_TEXTURED]);
 
+	shaders_id[SHADER_GEOMETRY_CUBE] = ShaderLoader::createShader();
+	ShaderLoader::attachShader(shaders_id[SHADER_GEOMETRY_CUBE], "Shaders/GeometryCube.vs", GL_VERTEX_SHADER);
+	ShaderLoader::attachShader(shaders_id[SHADER_GEOMETRY_CUBE], "Shaders/GeometryCube.gs", GL_GEOMETRY_SHADER);
+	ShaderLoader::attachShader(shaders_id[SHADER_GEOMETRY_CUBE], "Shaders/GeometryCube.ps", GL_FRAGMENT_SHADER);
+	ShaderLoader::linkShader(shaders_id[SHADER_GEOMETRY_CUBE]);
+
 
 	//shaders_id[SHADER_DEFAULT_TEXTURED] = ShaderLoader::loadShader("Shaders/TextureVertexShader.vertexshader", "Shaders/TexturePixelShader.pixelshader");
 

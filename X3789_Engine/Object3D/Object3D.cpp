@@ -25,11 +25,13 @@ void Object3D::loadVertexToGPU()
 	if (!vertices)
 		return;
 
+	GLint posAttrib[2];
 
-	glEnableVertexAttribArray(0);						   GL_ERROR();
+	posAttrib[0] = glGetAttribLocation(shader, "vertex_position_modelspace");
+	glEnableVertexAttribArray(posAttrib[0]);						   GL_ERROR();
 	glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);	   GL_ERROR();
 	glVertexAttribPointer(
-		0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+		posAttrib[0],                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
 		3,									// size (how many floats define vertex)
 		GL_FLOAT,							// type
 		GL_FALSE,							// normalized?
@@ -37,25 +39,25 @@ void Object3D::loadVertexToGPU()
 		(void*)0							// array buffer offset
 		);	GL_ERROR();
 
-	// disabled for now
-	//if (checkShader(SHADER_DEFAULT_SOLID))
-	//{
-		glEnableVertexAttribArray(1);						   GL_ERROR();
-		glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);	   GL_ERROR();
-		glVertexAttribPointer(
-			1,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
-			3,									// size (how many floats define vertex)
-			GL_FLOAT,							// type
-			GL_FALSE,							// normalized?
-			0,									// stride
-			(void*)0							// array buffer offset
-			);	GL_ERROR();
-	//}
+	posAttrib[1] = glGetAttribLocation(shader, "inColor");
+	glEnableVertexAttribArray(posAttrib[1]);						   GL_ERROR();
+	glBindBuffer(GL_ARRAY_BUFFER, this->color_buffer);	   GL_ERROR();
+	glVertexAttribPointer(
+		posAttrib[1],                  // attribute 0. No particular reason for 0, but must atch the layout in the shader.
+		3,									// size (how many floats define vertex)
+		GL_FLOAT,							// type
+		GL_FALSE,							// normalized?
+		0,									// stride
+		(void*)0							// array buffer offset
+		);	GL_ERROR();
 
+#ifndef GEOMETRY_CUBE
 	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum());	GL_ERROR();
-
-	glDisableVertexAttribArray(1);	GL_ERROR();
-	glDisableVertexAttribArray(0);	GL_ERROR();
+#else
+	glDrawArrays(GL_POINTS, 0, this->vertices->getVerticesNum());	GL_ERROR();
+#endif
+	glDisableVertexAttribArray(posAttrib[0]);	GL_ERROR();
+	glDisableVertexAttribArray(posAttrib[1]);	GL_ERROR();
 }
 
 inline void Object3D::loadStandarUniformsToGPU()
