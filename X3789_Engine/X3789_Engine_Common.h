@@ -15,8 +15,8 @@
 #define CUBE_SIZE 1.0f
 
 //#define STANDARD_CUBE
-//#define TEXTURED_CUBE
-#define GEOMETRY_CUBE
+#define TEXTURED_CUBE
+//#define GEOMETRY_CUBE
 
 enum Shader
 {

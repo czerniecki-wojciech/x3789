@@ -24,8 +24,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Cube cube;
 	//cube.setShader(SHADER_DEFAULT_TEXTURED);
 
-#define TEST_CUBE_NUM_H 60
-#define TEST_CUBE_NUM_V 60
+#define TEST_CUBE_NUM_H 1
+#define TEST_CUBE_NUM_V 1
 	Cube* cubes = new Cube[TEST_CUBE_NUM_H * TEST_CUBE_NUM_V];
 
 	for (int h = 0; h < TEST_CUBE_NUM_H; ++h)
@@ -34,9 +34,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			object_drawer->addNewObject3D(&cubes[h + v * TEST_CUBE_NUM_H]);
 			//cubes[h + v * TEST_CUBE_NUM_H].setPosition(-TEST_CUBE_NUM_H + h, -TEST_CUBE_NUM_V + v, 0.0f);
-			//cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_DEFAULT_SOLID);
+			cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_DEFAULT_SOLID);
 			//cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_DEFAULT_TEXTURED);
-			cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_GEOMETRY_CUBE);
+			//cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_GEOMETRY_CUBE);
 			cubes[h + v * TEST_CUBE_NUM_H].setPosition(h, v, h - v);
 		}
 	}
