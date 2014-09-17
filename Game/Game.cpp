@@ -11,6 +11,7 @@
 #include <X3789_Engine\Common\ControlInterface.h>
 #include <X3789_Engine\Common\TextureStorage.h>
 #include <X3789_Engine\Object3D\Object3DDrawer.h>
+#include <X3789_Engine\VBOTestClass.h>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -24,8 +25,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Cube cube;
 	//cube.setShader(SHADER_DEFAULT_TEXTURED);
 
-#define TEST_CUBE_NUM_H 1
-#define TEST_CUBE_NUM_V 1
+#define TEST_CUBE_NUM_H 0
+#define TEST_CUBE_NUM_V 0
 	Cube* cubes = new Cube[TEST_CUBE_NUM_H * TEST_CUBE_NUM_V];
 
 	for (int h = 0; h < TEST_CUBE_NUM_H; ++h)
@@ -45,6 +46,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	//cube2.setShader(SHADER_DEFAULT_TEXTURED);
 	//cube2.setPosition(3, 0, 0);
 
+	VBOTestClass vbotc;
+	vbotc.PreDraw();
+
 	WindowInterface::SetCursorPosCenter();
 
 	do
@@ -56,10 +60,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		//for (int i = 0; i < TEST_CUBE_NUM_H * TEST_CUBE_NUM_V; ++i)
 			//cubes[i].draw();
 
-		object_drawer->drawAll();
+		vbotc.Draw(ShaderInterface::getInstance()->getShader(SHADER_DEFAULT_SOLID));
+
+		//object_drawer->drawAll();
 
 		WindowInterface::endFrameDraw();
 	} while(!WindowInterface::GetKey(GLFW_KEY_ESCAPE) && !WindowInterface::WindowShouldClose());
+
+	vbotc.PostDraw();
 
 	delete[] cubes;
 

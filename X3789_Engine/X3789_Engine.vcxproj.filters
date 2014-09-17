@@ -85,6 +85,7 @@
     <ClCompile Include="Object3D\Object3DDrawer.cpp">
       <Filter>Source Files\Object3D</Filter>
     </ClCompile>
+    <ClCompile Include="VBOTestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -140,6 +141,9 @@
     </ClInclude>
     <ClInclude Include="Object3D\Object3DDrawer.h">
       <Filter>Header Files\Object3D</Filter>
+    </ClInclude>
+    <ClInclude Include="VBOTestClass.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

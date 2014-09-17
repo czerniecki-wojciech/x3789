@@ -1,12 +1,17 @@
+
 #pragma once
-class VBOTestClass
+
+class DLL_INTERFACE VBOTestClass
 {
 private:
-	void PreDraw();
-	void Draw();
-	void PostDraw();
+	GLuint vertex_buffer_id;
+	GLuint color_buffer_id;
+	GLuint indices_buffer_id;
 public:
 	VBOTestClass();
+	void PreDraw();
+	void Draw(GLuint shader);
+	void PostDraw();
 	~VBOTestClass();
 };
 

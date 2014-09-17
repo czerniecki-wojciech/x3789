@@ -42,10 +42,10 @@ OpenGL3Initializer::OpenGL3Initializer()
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	WindowHolder::getWindowHolder()->setWindow(window);
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
 	glEnable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 	glDepthFunc(GL_LESS);
 	glfwSwapInterval(VSYNC_ENABLED);
 }

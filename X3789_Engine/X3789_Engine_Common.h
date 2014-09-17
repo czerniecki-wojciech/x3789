@@ -18,6 +18,15 @@
 #define TEXTURED_CUBE
 //#define GEOMETRY_CUBE
 
+//#define VSYNC
+#ifndef VSYNC
+#	define VSYNC_ENABLED 0
+#else
+#	define VSYNC_ENABLED 1
+#endif
+
+#define USE_VBO
+
 enum Shader
 {
 	SHADER_DEFAULT_SOLID		= 0x00,
@@ -26,13 +35,6 @@ enum Shader
 
 	SHADER_TOTAL_NUM
 };
-
-//#define VSYNC
-#ifndef VSYNC
-#	define VSYNC_ENABLED 0
-#else
-#	define VSYNC_ENABLED 1
-#endif
 
 enum Texture
 {

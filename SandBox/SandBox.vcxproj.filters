@@ -20,12 +20,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CubeStruct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DataTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -41,12 +35,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeStruct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
