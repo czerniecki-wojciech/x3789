@@ -44,23 +44,7 @@ void VBOTestClass::PreDraw()
 
 	GLushort indices[] =
 	{
-		0, 1, 2,
-		0, 2, 3,
-
-		0, 1, 5,
-		0, 5, 4,
-
-		3, 4, 0,
-		3, 4, 7,
-
-		2, 3, 7,
-		2, 6, 7,
-
-		1, 2, 6,
-		1, 5, 6,
-
-		4, 5, 6,
-		4, 6, 7
+		0, 1, 3, 2, 6, 1, 5, 4, 6, 7, 3, 4, 0, 1
 	};
 
 	//vertices
@@ -108,7 +92,7 @@ void VBOTestClass::Draw(GLuint shader)
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indices_buffer_id); GL_ERROR();
 
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, (void*)0); GL_ERROR();
+	glDrawElements(GL_TRIANGLE_STRIP, 14, GL_UNSIGNED_SHORT, (void*)0); GL_ERROR();
 	//glDrawRangeElements(GL_TRIANGLES, 0, 3, 3, GL_UNSIGNED_SHORT, (void*)0);
 
 	//glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, indices_buffer_id);
