@@ -50,7 +50,9 @@ void Object3D::loadVertexToGPU()
 		0,									// stride
 		(void*)0							// array buffer offset
 		);	GL_ERROR();
+#if (defined(VBO))
 
+#endif
 #ifndef GEOMETRY_CUBE
 	glDrawArrays(GL_TRIANGLES, 0, this->vertices->getVerticesNum());	GL_ERROR();
 #else
@@ -71,7 +73,7 @@ inline void Object3D::loadExtraUniformsToGPU()
 	if (uniforms)
 		this->uniforms->loadToGPU(this->shader);
 
-	if (checkShader(SHADER_DEFAULT_TEXTURED))
+	if (checkShader(X3789_SHADER_DEFAULT_TEXTURED))
 	{
 		TextureStorage::useTexture(TEXTURE_TEST, this->shader);
 	}
@@ -92,7 +94,7 @@ inline void Object3D::draw(bool reload_uniforms)
 void Object3D::endObjectDefinition()
 {
 	if (shader == -1)
-		this->setShader(SHADER_DEFAULT_SOLID);
+		this->setShader(X3789_SHADER_DEFAULT_SOLID);
 
 	glGenBuffers(1, &this->vertex_buffer);						GL_ERROR();
 

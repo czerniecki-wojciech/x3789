@@ -35,9 +35,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			object_drawer->addNewObject3D(&cubes[h + v * TEST_CUBE_NUM_H]);
 			//cubes[h + v * TEST_CUBE_NUM_H].setPosition(-TEST_CUBE_NUM_H + h, -TEST_CUBE_NUM_V + v, 0.0f);
-			cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_DEFAULT_SOLID);
-			//cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_DEFAULT_TEXTURED);
-			//cubes[h + v * TEST_CUBE_NUM_H].setShader(SHADER_GEOMETRY_CUBE);
+			cubes[h + v * TEST_CUBE_NUM_H].setShader(X3789_SHADER_DEFAULT_SOLID);
+			//cubes[h + v * TEST_CUBE_NUM_H].setShader(X3789_SHADER_DEFAULT_TEXTURED);
+			//cubes[h + v * TEST_CUBE_NUM_H].setShader(X3789_SHADER_GEOMETRY_CUBE);
 			cubes[h + v * TEST_CUBE_NUM_H].setPosition(h, v, h - v);
 		}
 	}
@@ -60,7 +60,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//for (int i = 0; i < TEST_CUBE_NUM_H * TEST_CUBE_NUM_V; ++i)
 			//cubes[i].draw();
 
-		vbotc.Draw(ShaderInterface::getInstance()->getShader(SHADER_DEFAULT_SOLID));
+		vbotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));
 
 		//object_drawer->drawAll();
 
