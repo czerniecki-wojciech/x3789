@@ -13,12 +13,14 @@ protected:
 	GLenum primitive_type;
 	GLuint vertex_buffer;
 	GLuint color_buffer;
+	GLuint indices_buffer;
 	GLuint uv_buffer;
 
 	GLuint mvp_id;
 	GLuint object_position_id;
 
 	VertexStorage* vertices;
+	GLushort* indices;
 	UniformStorage* uniforms;
 
 	void loadStandarUniformsToGPU();

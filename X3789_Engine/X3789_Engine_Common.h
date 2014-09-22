@@ -13,16 +13,18 @@
 #define SCREEN_HEIGHT 480
 
 #define CUBE_SIZE 1.0f
+#define CUBE_SIZE_2 0.5f
 
 //Render_METOD
-#define X3789_RENDER_VAO
-#define X3789_RENDER_GEOMETRY_VAO
-#define X3789_RENDER_VBO_GEOMETRY_VAO
-#define X3789_RENDER_VBO_TRI_STRIP
+//#define X3789_RENDER_VAO
+//#define X3789_RENDER_VAO_GEOMETRY
+//#define X3789_RENDER_VBO_GEOMETRY
+#define X3789_RENDER_VBO_TRIANGLE
+//#define X3789_RENDER_VBO_TRI_STRIP
 
 //Cube surface mode
 #define X3789_SURFACE_MODE_COLOR
-#define X3789_SURFACE_MODE_TEXTURE
+//#define X3789_SURFACE_MODE_TEXTURE
 
 //#define VSYNC
 #ifndef VSYNC
@@ -71,7 +73,13 @@ struct Uniform : public UniformBase
 	float data[16];
 };
 
-static void GL_ERROR()
+#ifdef _DEBUG
+#	define GL_ERROR GL_ERROR_IMP()
+#else
+#	define GL_ERROR
+#endif
+
+static void GL_ERROR_IMP()
 {
 	switch (glGetError())
 	{

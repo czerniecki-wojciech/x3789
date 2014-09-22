@@ -9,8 +9,7 @@ VertexStorage::VertexStorage(unsigned int grow_by)
 	, allocated_vertices_num(0)
 	, grow_by(grow_by)
 	, vertices(NULL)
-{
-}
+{}
 
 
 VertexStorage::~VertexStorage()
