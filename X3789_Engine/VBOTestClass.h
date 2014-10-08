@@ -17,7 +17,7 @@ public:
 
 	void anotherTest();
 	void anotherTest2();
-	//float* getVerticesWithColors();
+	float* getVerticesWithColors();
 	GLuint* getIndices();
 };
 

@@ -46,26 +46,23 @@ float* agetVerticesWithColors();
 	return agetVerticesWithColors();
 }*/
 
-float* agetVerticesWithColors()
+float* VBOTestClass::getVerticesWithColors()
 {
-	/*unsigned int size = CUBE_NUM * CUBE_NUM * sizeof(test_vertex);
-	test_vertex* vertices = new test_vertex[CUBE_NUM * CUBE_NUM * 8];*/
-
 	test_vertex* vertices = (test_vertex*)malloc(CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 8);
 
 	for (unsigned int h = 0; h < CUBE_NUM; ++h)
 	{
 		for (unsigned int v = 0; v < CUBE_NUM; ++v)
 		{
-			test_vertex v1(h + CUBE_SIZE_2, v + CUBE_SIZE_2, h - v + CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
-			test_vertex v2(h - CUBE_SIZE_2, v + CUBE_SIZE_2, h - v + CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
-			test_vertex v3(h - CUBE_SIZE_2, v - CUBE_SIZE_2, h - v + CUBE_SIZE_2, 0.0f, 0.0f, 1.0f);
-			test_vertex v4(h + CUBE_SIZE_2, v - CUBE_SIZE_2, h - v + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
+			test_vertex v1(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
+			test_vertex v2(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
+			test_vertex v3(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 0.0f, 1.0f);
+			test_vertex v4(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
 
-			test_vertex v5(h + CUBE_SIZE_2, v + CUBE_SIZE_2, h - v - CUBE_SIZE_2, 1.0f, 0.0f, 1.0f);
-			test_vertex v6(h - CUBE_SIZE_2, v + CUBE_SIZE_2, h - v - CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
-			test_vertex v7(h - CUBE_SIZE_2, v - CUBE_SIZE_2, h - v - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-			test_vertex v8(h + CUBE_SIZE_2, v - CUBE_SIZE_2, h - v - CUBE_SIZE_2, 0.0f, 0.0f, 0.0f);
+			test_vertex v5(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 0.0f, 1.0f);
+			test_vertex v6(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
+			test_vertex v7(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+			test_vertex v8(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 0.0f, 0.0f);
 
 			vertices[h * CUBE_NUM * 8 + v * 8 + 0] = v1;
 			vertices[h * CUBE_NUM * 8 + v * 8 + 1] = v2;
@@ -119,12 +116,12 @@ GLuint* VBOTestClass::getIndices()
 		indices[i * 36 + 23] = 2 + i*8;
 
 
-		indices[i * 36 + 24] = 5 + i*8;
+		indices[i * 36 + 24] = 0 + i*8;
 		indices[i * 36 + 25] = 4 + i*8;
-		indices[i * 36 + 26] = 0 + i*8;
-		indices[i * 36 + 27] = 5 + i*8;
+		indices[i * 36 + 26] = 5 + i*8;
+		indices[i * 36 + 27] = 1 + i*8;
 		indices[i * 36 + 28] = 0 + i*8;
-		indices[i * 36 + 29] = 1 + i*8;
+		indices[i * 36 + 29] = 5 + i*8;
 
 		indices[i * 36 + 30] = 3 + i*8;
 		indices[i * 36 + 31] = 2 + i*8;
@@ -140,46 +137,9 @@ GLuint* VBOTestClass::getIndices()
 void VBOTestClass::PreDraw()
 {
 	test_vertex* tv = new test_vertex[10];
-	/*
-	float vertices_with_colors[] =
-	{
-		1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-		-1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
-		-1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-		1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-
-		1.0f, 1.0f, -1.0f, 1.0f, 0.0f, 1.0f,
-		-1.0f, 1.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-		-1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, -1.0f, -1.0f,	 0.0f, 0.0f, 0.0f
-	};
-	*/
-
-	/*
-	GLuint indices[] =
-	{
-		0, 1, 3, 2, 6, 1, 5, 4, 6, 7, 3, 4, 0, 1
-	};
-	*/
-
-	/*
-	GLuint indices[] =
-	{
-		0, 1, 2, 0, 2, 3,
-		4, 0, 3, 4, 3, 7,
-		5, 4, 7, 5, 7, 6,
-		1, 5, 6, 1, 6, 2,
-		5, 4, 0, 5, 0, 1,
-		3, 2, 6, 3, 6, 7
-	};
-	*/
-	
 
 	GLuint* indices = getIndices();
-	//GLuint* indices = 0;
-	float* (*fun)() = []()->float*{return agetVerticesWithColors(); };
-	float* vertices_ptr = fun();
-	//float* vertices = agetVerticesWithColors();
+	float* vertices_ptr = getVerticesWithColors();
 
 	//vertices with colros
 	glGenBuffers(1, &vertex_with_colors_id);	GL_ERROR;
@@ -329,13 +289,6 @@ void VBOTestClass::Draw(GLuint shader)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indices_buffer_id); GL_ERROR;
 
 	glDrawElements(GL_TRIANGLES, CUBE_NUM * CUBE_NUM * 36, GL_UNSIGNED_INT, (void*)0); GL_ERROR;
-
-	//glDrawElements(GL_TRIANGLE_STRIP, 14, GL_UNSIGNED_SHORT, (void*)0); GL_ERROR();
-	//glDrawRangeElements(GL_TRIANGLES, 0, 3, 3, GL_UNSIGNED_SHORT, (void*)0);
-
-	//glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, indices_buffer_id);
-	//glEnableClientState(GL_VERTEX_ARRAY);
-	//glVertexPointer(3, GL_FLOAT, 0, 0);
 }
 void VBOTestClass::PostDraw()
 {

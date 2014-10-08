@@ -45,7 +45,7 @@ OpenGL3Initializer::OpenGL3Initializer()
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 	glDepthFunc(GL_LESS);
 	glfwSwapInterval(VSYNC_ENABLED);
 }
