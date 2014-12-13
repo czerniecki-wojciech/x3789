@@ -33,6 +33,12 @@
 #	define VSYNC_ENABLED 1
 #endif
 
+#ifdef _DEBUG
+#	define DebugBreak __debugbreak
+#else
+#	define DebugBreak
+#endif
+
 enum Shader
 {
 	X3789_SHADER_DEFAULT_SOLID		= 0x00,

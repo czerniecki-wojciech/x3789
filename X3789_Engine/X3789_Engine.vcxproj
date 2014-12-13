@@ -12,8 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\ControlInterface.cpp" />
+    <ClCompile Include="Common\Math\Matrices.cpp" />
     <ClCompile Include="Common\TextureBMP.cpp" />
     <ClCompile Include="Common\TextureStorage.cpp" />
+    <ClCompile Include="Containers\Chunk.cpp" />
+    <ClCompile Include="Containers\CubeHolder.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Object3D\Object3D.cpp" />
     <ClCompile Include="Object3D\Object3DDrawer.cpp" />
@@ -35,8 +38,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\ControlInterface.h" />
+    <ClInclude Include="Common\Math\Matrices.h" />
     <ClInclude Include="Common\TextureBMP.h" />
     <ClInclude Include="Common\TextureStorage.h" />
+    <ClInclude Include="Containers\Chunk.h" />
+    <ClInclude Include="Containers\CubeHolder.h" />
     <ClInclude Include="Object3D\Object3D.h" />
     <ClInclude Include="Object3D\Object3DDrawer.h" />
     <ClInclude Include="Object3D\Primitives\Cube.h" />
