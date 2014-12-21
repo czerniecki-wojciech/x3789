@@ -13,7 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Common\ControlInterface.cpp" />
     <ClCompile Include="Common\Math\Matrices.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Common\TextureBMP.cpp" />
     <ClCompile Include="Common\TextureStorage.cpp" />
