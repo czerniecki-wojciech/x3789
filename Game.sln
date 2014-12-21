@@ -9,8 +9,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj",
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SandBox", "SandBox\SandBox.vcxproj", "{FBE63A7C-6194-435B-B3FF-0F210C21EFB6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6E08FD07-08BF-481A-886E-638DB0C94D0B} = {6E08FD07-08BF-481A-886E-638DB0C94D0B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "X3789_Engine", "X3789_Engine\X3789_Engine.vcxproj", "{6E08FD07-08BF-481A-886E-638DB0C94D0B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMath", "XMath\XMath.vcxproj", "{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{6215ECA7-0FBD-481C-985A-538B6AB502FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +37,14 @@ Global
 		{6E08FD07-08BF-481A-886E-638DB0C94D0B}.Debug|Win32.Build.0 = Debug|Win32
 		{6E08FD07-08BF-481A-886E-638DB0C94D0B}.Release|Win32.ActiveCfg = Release|Win32
 		{6E08FD07-08BF-481A-886E-638DB0C94D0B}.Release|Win32.Build.0 = Release|Win32
+		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Debug|Win32.Build.0 = Debug|Win32
+		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Release|Win32.ActiveCfg = Release|Win32
+		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Release|Win32.Build.0 = Release|Win32
+		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Debug|Win32.Build.0 = Debug|Win32
+		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Release|Win32.ActiveCfg = Release|Win32
+		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

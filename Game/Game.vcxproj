@@ -59,7 +59,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)Game</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(SolutionDir)tmp\%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(SolutionDir)tmp\%(RelativeDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)tmp\%(RelativeDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <XMLDocumentationFileName>$(SolutionDir)tmp\%(RelativeDir)</XMLDocumentationFileName>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
