@@ -12,7 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\ControlInterface.cpp" />
-    <ClCompile Include="Common\Math\Matrices.cpp" />
+    <ClCompile Include="Common\Math\Matrices.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Common\TextureBMP.cpp" />
     <ClCompile Include="Common\TextureStorage.cpp" />
     <ClCompile Include="Containers\Chunk.cpp" />
@@ -94,6 +96,7 @@
     <LinkIncremental>true</LinkIncremental>
     <SourcePath>$(VC_SourcePath);$(SolutionDir)</SourcePath>
     <IncludePath>$(SolutionDir)X3789_Engine;$(SolutionDir)Common;$(SolutionDir);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

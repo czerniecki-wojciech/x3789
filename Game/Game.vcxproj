@@ -43,6 +43,7 @@
     <LinkIncremental>true</LinkIncremental>
     <SourcePath>$(VC_SourcePath);$(SolutionDir)</SourcePath>
     <LibraryPath>$(SolutionDir)Debug;$(SolutionDir)lib;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <IncludePath>$(SolutionDir);$(SolutionDir)Common;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
