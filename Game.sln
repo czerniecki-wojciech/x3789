@@ -17,8 +17,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "X3789_Engine", "X3789_Engin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMath", "XMath\XMath.vcxproj", "{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{6215ECA7-0FBD-481C-985A-538B6AB502FD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -41,10 +39,6 @@ Global
 		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Debug|Win32.Build.0 = Debug|Win32
 		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Release|Win32.ActiveCfg = Release|Win32
 		{DD3CA14B-D7EB-4C52-A106-DAECE75EFC2A}.Release|Win32.Build.0 = Release|Win32
-		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Debug|Win32.Build.0 = Debug|Win32
-		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Release|Win32.ActiveCfg = Release|Win32
-		{6215ECA7-0FBD-481C-985A-538B6AB502FD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
