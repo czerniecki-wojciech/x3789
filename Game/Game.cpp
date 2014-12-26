@@ -13,6 +13,18 @@
 #include <X3789_Engine\Object3D\Object3DDrawer.h>
 #include <X3789_Engine\VBOTestClass.h>
 
+#include <XMath\XMath.h>
+
+void Math_test()
+{
+	Vector<int> vec;
+	Matrix2D<int> mat2d;
+	Matrix1D<int>& mat1d = mat2d[2];
+
+	Matrix3D<int> mat4d;
+	Matrix2D<int>& mat3dref = mat4d[1];
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	LoadLibrary("X3789_Engine");
@@ -24,6 +36,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//Cube cube;
 	//cube.setShader(SHADER_DEFAULT_TEXTURED);
+
+	Math_test();
 
 #define TEST_CUBE_NUM_H 0
 #define TEST_CUBE_NUM_V 0
