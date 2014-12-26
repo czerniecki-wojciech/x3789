@@ -39,13 +39,6 @@ public:
 	{}
 };
 
-float* agetVerticesWithColors();
-
-/*float* VBOTestClass::getVerticesWithColors()
-{
-	return agetVerticesWithColors();
-}*/
-
 float* VBOTestClass::getVerticesWithColors()
 {
 	test_vertex* vertices = (test_vertex*)malloc(CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 8);

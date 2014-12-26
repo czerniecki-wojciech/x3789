@@ -15,16 +15,6 @@
 
 #include <XMath\XMath.h>
 
-void Math_test()
-{
-	Vector<int> vec;
-	Matrix2D<int> mat2d;
-	Matrix1D<int>& mat1d = mat2d[2];
-
-	Matrix3D<int> mat4d;
-	Matrix2D<int>& mat3dref = mat4d[1];
-}
-
 int _tmain(int argc, _TCHAR* argv[])
 {
 	LoadLibrary("X3789_Engine");
@@ -37,10 +27,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//Cube cube;
 	//cube.setShader(SHADER_DEFAULT_TEXTURED);
 
-	Math_test();
-
-#define TEST_CUBE_NUM_H 0
-#define TEST_CUBE_NUM_V 0
+#define TEST_CUBE_NUM_H 10
+#define TEST_CUBE_NUM_V 10
 	Cube* cubes = new Cube[TEST_CUBE_NUM_H * TEST_CUBE_NUM_V];
 
 	for (int h = 0; h < TEST_CUBE_NUM_H; ++h)
@@ -74,7 +62,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		//for (int i = 0; i < TEST_CUBE_NUM_H * TEST_CUBE_NUM_V; ++i)
 			//cubes[i].draw();
 
-		vbotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));
+		//vbotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));// TEXTURED));
 
 		//object_drawer->drawAll();
 

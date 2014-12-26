@@ -12,10 +12,10 @@ OpenGL3Initializer::OpenGL3Initializer()
 	}
 	printf("DATE: %s\n", __TIMESTAMP__);
 
-	glfwWindowHint(GLFW_SAMPLES, 8); // 4x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // We want OpenGL 3.3
+	glfwWindowHint(GLFW_SAMPLES, 8); //8x antialiasing
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); //OpenGL 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); //We don't want the old OpenGL
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); 
 
 	GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
 
@@ -26,7 +26,7 @@ OpenGL3Initializer::OpenGL3Initializer()
 	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, title, NULL, NULL);
 	if (window == NULL)
 	{
-		fprintf(stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n");
+		fprintf(stderr, "Failed to open GLFW window.");
 		glfwTerminate();
 		return;
 	}
