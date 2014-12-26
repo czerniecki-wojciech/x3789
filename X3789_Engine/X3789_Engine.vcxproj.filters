@@ -26,17 +26,11 @@
     <Filter Include="Header Files\Object3D">
       <UniqueIdentifier>{be41b8a7-24eb-4611-8594-929a3f402b0c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Object3D\Primitives">
-      <UniqueIdentifier>{f99ed32a-a0ed-4457-a7b6-a148bd954e28}</UniqueIdentifier>
+    <Filter Include="Header Files\Interfaces">
+      <UniqueIdentifier>{ae5c2a96-2558-4ba1-877e-19b601c9d420}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object3D\Primitives">
-      <UniqueIdentifier>{58122ba8-a7aa-456f-875c-50b4174a0c4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Containers">
-      <UniqueIdentifier>{1dbc9571-b1a7-4f6e-8b79-8ab713795bda}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Containers">
-      <UniqueIdentifier>{807a6080-eb2e-49fa-9b41-71632902cc64}</UniqueIdentifier>
+    <Filter Include="Source Files\Interfaces">
+      <UniqueIdentifier>{62c24bc8-47c5-4dcd-b1dd-dea69fa8be6f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -52,12 +46,6 @@
     <ClCompile Include="OpenGL3Initializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WindowHolder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WindowInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\TextureBMP.cpp">
       <Filter>Source Files\Texture</Filter>
     </ClCompile>
@@ -66,15 +54,6 @@
     </ClCompile>
     <ClCompile Include="Shaders\ShaderLoader.cpp">
       <Filter>Source Files\Shaders</Filter>
-    </ClCompile>
-    <ClCompile Include="Object3D\Object3D.cpp">
-      <Filter>Source Files\Object3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\ControlInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderInterface.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Object3D\UniformStorage.cpp">
       <Filter>Source Files\Object3D</Filter>
@@ -85,20 +64,20 @@
     <ClCompile Include="Object3D\UniformCreator.cpp">
       <Filter>Source Files\Object3D</Filter>
     </ClCompile>
-    <ClCompile Include="Object3D\Object3DDrawer.cpp">
-      <Filter>Source Files\Object3D</Filter>
-    </ClCompile>
-    <ClCompile Include="Containers\Chunk.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="Containers\CubeHolder.cpp">
-      <Filter>Source Files\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="Object3D\Primitives\Cube.cpp">
-      <Filter>Source Files\Object3D\Primitives</Filter>
-    </ClCompile>
     <ClCompile Include="VBOTestClass.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ControlInterface.cpp">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderInterface.cpp">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowInterface.cpp">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowHolder.cpp">
+      <Filter>Source Files\Interfaces</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,29 +96,14 @@
     <ClInclude Include="X3789_Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WindowHolder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ControlInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\TextureBMP.h">
       <Filter>Header Files\Texture</Filter>
     </ClInclude>
     <ClInclude Include="Common\TextureStorage.h">
       <Filter>Header Files\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Shaders\ShaderLoader.h">
       <Filter>Header Files\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="Object3D\Object3D.h">
-      <Filter>Header Files\Object3D</Filter>
     </ClInclude>
     <ClInclude Include="Object3D\UniformStorage.h">
       <Filter>Header Files\Object3D</Filter>
@@ -147,23 +111,23 @@
     <ClInclude Include="Object3D\VertexStorage.h">
       <Filter>Header Files\Object3D</Filter>
     </ClInclude>
-    <ClInclude Include="Object3D\Primitives\Cube.h">
-      <Filter>Header Files\Object3D\Primitives</Filter>
-    </ClInclude>
     <ClInclude Include="Object3D\UniformCreator.h">
-      <Filter>Header Files\Object3D</Filter>
-    </ClInclude>
-    <ClInclude Include="Object3D\Object3DDrawer.h">
       <Filter>Header Files\Object3D</Filter>
     </ClInclude>
     <ClInclude Include="VBOTestClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Containers\Chunk.h">
-      <Filter>Header Files\Containers</Filter>
+    <ClInclude Include="Common\ControlInterface.h">
+      <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Containers\CubeHolder.h">
-      <Filter>Header Files\Containers</Filter>
+    <ClInclude Include="ShaderInterface.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInterface.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowHolder.h">
+      <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

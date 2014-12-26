@@ -17,12 +17,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VertexAttrib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameMainHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -32,12 +26,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexAttrib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
