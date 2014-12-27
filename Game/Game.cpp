@@ -12,7 +12,7 @@
 
 #include <XMath\XMath.h>
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	LoadLibrary("X3789_Engine");
 	LoadLibrary("SandBox");

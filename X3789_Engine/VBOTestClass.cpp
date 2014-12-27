@@ -129,8 +129,6 @@ GLuint* VBOTestClass::getIndices()
 
 void VBOTestClass::PreDraw()
 {
-	test_vertex* tv = new test_vertex[10];
-
 	GLuint* indices = getIndices();
 	float* vertices_ptr = getVerticesWithColors();
 
@@ -260,13 +258,12 @@ void VBOTestClass::anotherTest2()
 
 void VBOTestClass::Draw(GLuint shader)
 {
-	glUseProgram(shader);
-
+	glUseProgram(shader); //use shader set
 
 	GLuint mvp_id = glGetUniformLocation(shader, "MVP");	GL_ERROR;
 	glUniformMatrix4fv(mvp_id, 1, GL_FALSE, ControlInterface::getMVPData()); GL_ERROR;
 
-	GLuint id = 999;
+	GLuint id = -1;
 
 	id = glGetAttribLocation(shader, "vertex_position_modelspace"); GL_ERROR;
 	glEnableVertexAttribArray(id);
