@@ -1,4 +1,5 @@
 
+#include "stdafx.h"
 #include "Vertex.h"
 
 Vertex_Base::Vertex_Base(float x, float y, float z)

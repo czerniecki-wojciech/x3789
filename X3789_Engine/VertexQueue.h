@@ -2,28 +2,30 @@
 #ifndef __VERTEX_QUEUE_H__
 #define __VERTEX_QUEUE_H__
 
-template<typename T>
+template<typename T, uint programID>
 class VertexQueue
 {
 private:
-	static VertexQueue* instance = 0;
+	static VertexQueue* instance;
 
 	T* vertices;
 	unsigned int vertices_num;
+
 	VertexQueue();
 
 public:
-	static VertexQueue<T>* getQueue();
-	void addVertex(T)
 	~VertexQueue();
+
+	static VertexQueue<T, programID>* getQueue();
+	void addVertex(T);
 };
 
-template<typename T>
-static VertexQueue<T>* VertexQueue<T>::getQueue(){
+template<typename T, uint programID>
+static VertexQueue<T, programID>* VertexQueue<T, programID>::getQueue(){
 	if (instance)
 		return instance;
 
-	instance = new VertexData<T>();
+	instance = new VertexData<T, programID>();
 	return instance;
 }
 

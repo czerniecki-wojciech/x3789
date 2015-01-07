@@ -122,3 +122,6 @@ static void GL_ERROR_IMP()
 		break;
 	}
 }
+
+typedef unsigned int uint;
+typedef unsigned short ushort;
