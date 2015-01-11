@@ -18,10 +18,16 @@ public:
 
 	static VertexQueue<T, programID>* getQueue();
 	void addVertex(T);
+	void reset();
+
+	const T* getVerticesPointer();
+
+	static const uint Max_Vertex_Num = 1000;
 };
 
 template<typename T, uint programID>
-static VertexQueue<T, programID>* VertexQueue<T, programID>::getQueue(){
+VertexQueue<T, programID>* VertexQueue<T, programID>::getQueue()
+{
 	if (instance)
 		return instance;
 
