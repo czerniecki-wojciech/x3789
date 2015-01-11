@@ -5,8 +5,6 @@
 
 #pragma once
 
-#include "targetver.h"
-
 #include "GameMainHeader.h"
 //#include "Common\LoadShader.h"
 

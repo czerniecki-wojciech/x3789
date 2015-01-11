@@ -4,7 +4,7 @@
 #include "VBOTestClass.h"
 #include <ctime>
 
-#define CUBE_NUM 60
+#define CUBE_NUM 400
 
 VBOTestClass::VBOTestClass()
 {
@@ -68,6 +68,7 @@ float* VBOTestClass::getVerticesWithColors()
 			vertices[h * CUBE_NUM * 8 + v * 8 + 7] = v8;
 		}
 	}
+	printf("vertices num: %d(%d bytes)\n", CUBE_NUM * CUBE_NUM * 8, CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 8);
 
 	return (float*)vertices;
 }
@@ -124,6 +125,8 @@ GLuint* VBOTestClass::getIndices()
 		indices[i * 36 + 35] = 7 + i*8;
 	}
 
+	printf("indices num: %d(%d bytes)\n", 36 * CUBE_NUM * CUBE_NUM, 36 * CUBE_NUM * CUBE_NUM * sizeof(GLuint));
+
 	return indices;
 }
 
@@ -135,12 +138,12 @@ void VBOTestClass::PreDraw()
 	//vertices with colros
 	glGenBuffers(1, &vertex_with_colors_id);	GL_ERROR;
 	glBindBuffer(GL_ARRAY_BUFFER, vertex_with_colors_id);	GL_ERROR;
-	glBufferData(GL_ARRAY_BUFFER, CUBE_NUM * CUBE_NUM * 8 * 6 * sizeof(GLfloat), vertices_ptr, GL_STATIC_DRAW);	GL_ERROR;
+	glBufferData(GL_ARRAY_BUFFER, CUBE_NUM * CUBE_NUM * 8 * 6 * sizeof(GLfloat), vertices_ptr, GL_DYNAMIC_DRAW);	GL_ERROR;
 	
 	//indices
 	glGenBuffers(1, &indices_buffer_id);	GL_ERROR;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indices_buffer_id);	GL_ERROR;
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, CUBE_NUM * CUBE_NUM * 36 * sizeof(GLuint), indices, GL_STATIC_DRAW);	GL_ERROR;
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, CUBE_NUM * CUBE_NUM * 36 * sizeof(GLuint), indices, GL_DYNAMIC_DRAW);	GL_ERROR;
 
 	anotherTest();
 	anotherTest2();
@@ -270,10 +273,10 @@ void VBOTestClass::Draw(GLuint shader)
 	glBindBuffer(GL_ARRAY_BUFFER, vertex_with_colors_id); GL_ERROR;
 	glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); GL_ERROR;
 
-	id = glGetAttribLocationARB(shader, "inColor"); GL_ERROR;
+	id = glGetAttribLocation(shader, "inColor"); GL_ERROR;
 	glEnableVertexAttribArray(id);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, vertex_with_colors_id); GL_ERROR;
-	glVertexAttribPointerARB(id, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); GL_ERROR;
+	glBindBuffer(GL_ARRAY_BUFFER, vertex_with_colors_id); GL_ERROR;
+	glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); GL_ERROR;
 
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indices_buffer_id); GL_ERROR;
