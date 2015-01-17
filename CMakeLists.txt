@@ -26,7 +26,7 @@ find_library(GLFW3DLL_LIB glfw3dll ${LIB_DIR})
 	
 target_link_libraries(X3789
 	X3789_Engine
-	${GLFW3DLL_LIB}
+	${GLFW3_LIB}
 	)
 	
 file(GLOB SHADERS "external_files/Shaders/*")
