@@ -6,7 +6,7 @@ template<typename T, uint programID>
 class VertexQueue
 {
 private:
-	static VertexQueue* instance;
+	//static VertexQueue* instance;
 
 	T* vertices;
 	unsigned int vertices_num;
@@ -28,11 +28,12 @@ public:
 template<typename T, uint programID>
 VertexQueue<T, programID>* VertexQueue<T, programID>::getQueue()
 {
-	if (instance)
+	/*if (instance)
 		return instance;
 
 	instance = new VertexData<T, programID>();
-	return instance;
+	return instance;*/
+	return 0;
 }
 
 #endif

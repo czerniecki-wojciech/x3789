@@ -4,7 +4,7 @@
 #include "VBOTestClass.h"
 #include <ctime>
 
-#define CUBE_NUM 400
+#define CUBE_NUM 10
 
 VBOTestClass::VBOTestClass()
 {

@@ -14,10 +14,33 @@
 
 #include <XMath\XMath.h>
 
+
+
+#include <X3789_Engine\Tools\Singleton.h>
+#include <iostream>
+
 VertexQueue<uint, 0>* queue;
+
+void tests()
+{
+	class TestClass
+	{
+	public:
+		TestClass(int a)
+		{
+			std::cout << a << std::endl;
+		}
+	};
+	typedef Singleton<TestClass, int> singl;
+
+	singl a(3);
+	TestClass *p = a.getInstance();
+}
 
 int main(int argc, char* argv[])
 {
+	tests();
+
 	queue = VertexQueue<uint, 0>::getQueue();
 
 	LoadLibrary("X3789_Engine");
