@@ -12,9 +12,9 @@ OpenGL3Initializer::OpenGL3Initializer()
 	}
 	printf("DATE: %s\n", __TIMESTAMP__);
 
-	glfwWindowHint(GLFW_SAMPLES, 8); //8x antialiasing
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); //OpenGL 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_SAMPLES, 4; //4x antialiasing
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2); //OpenGL 3.3
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); 
 
 	GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
@@ -32,7 +32,8 @@ OpenGL3Initializer::OpenGL3Initializer()
 	}
 
 	glfwMakeContextCurrent(window);
-	glewExperimental = true;
+	// it can couse some problems, but it must be checked
+	// glewExperimental = true;
 	if (glewInit() != GLEW_OK)
 	{
 	fprintf(stderr, "Failed to initialize GLEW\n");
