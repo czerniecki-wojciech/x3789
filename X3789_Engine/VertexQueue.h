@@ -10,30 +10,43 @@ private:
 
 	T* vertices;
 	unsigned int vertices_num;
-
-	VertexQueue();
-
+	
 public:
+	VertexQueue();
 	~VertexQueue();
 
-	static VertexQueue<T, programID>* getQueue();
-	void addVertex(T);
+	void addVertex(T new_one);
 	void reset();
 
 	const T* getVerticesPointer();
 
-	static const uint Max_Vertex_Num = 1000;
+	static const uint MAX_VERTICES_NUM = 1000;
 };
 
 template<typename T, uint programID>
-VertexQueue<T, programID>* VertexQueue<T, programID>::getQueue()
+VertexQueue<T, programID>::VertexQueue()
+	: vertices_num(0)
 {
-	/*if (instance)
-		return instance;
+	vertices = new T[MAX_VERTICES_NUM];
+}
 
-	instance = new VertexData<T, programID>();
-	return instance;*/
-	return 0;
+
+template<typename T, uint programID>
+VertexQueue<T, programID>::~VertexQueue()
+{
+	delete[] vertices;
+}
+
+template<typename T, uint programID>
+VertexQueue<T, programID>::reset()
+{
+	vertices_num = 0;
+}
+
+template<typename T, uint programID>
+VertexQueue<T, programID>::addvertex(T new_one)
+{
+	vertices[vertices_num++] = new_one;
 }
 
 #endif
