@@ -9,6 +9,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 MESSAGE("LIB_DIR: " ${LIB_DIR})
 
+add_definitions(-DGLM_FORCE_RADIANS)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+	add_definitions(-DSYSTEM_LINUX)
+endif()
+
 add_subdirectory(X3789_Engine)
 
 project("X3789")
