@@ -1,7 +1,7 @@
 
 #include "stdafx.h"
 #include <X3789_Engine_Common.h>
-#include <X3789_Engine\WindowInterface.h>
+#include <WindowInterface.h>
 
 #include "ControlInterface.h"
 

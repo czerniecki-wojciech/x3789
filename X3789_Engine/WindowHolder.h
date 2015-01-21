@@ -1,5 +1,6 @@
 
-#pragma once
+#ifndef __WINDOW_HOLDER_H__
+#define __WINDOW_HOLDER_H__
 
 class DLL_INTERFACE WindowHolder
 {
@@ -31,4 +32,6 @@ public:
 		window = new_window;
 	}
 };
+
+#endif
 

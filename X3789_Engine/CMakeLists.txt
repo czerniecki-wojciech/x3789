@@ -17,6 +17,8 @@ include_directories(
 	)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+	add_definitions(-DSYSTEM_LINUX)
+
 	find_library(GLEW_LIB GLEW ${LIB_DIR})
 	find_library(GLFW3_LIB glfw3 ${LIB_DIR})
 	find_library(OPENGLU_LIB GLU ${LIB_DIR})

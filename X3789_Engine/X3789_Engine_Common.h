@@ -1,11 +1,19 @@
 
 #pragma once
 
+#ifdef SYSTEM_LINUX
+#	define DLL_EXPORT
+#	define DLL_IMPORT
+#else
+#	define DLL_EXPORT __declspec(dllexport)
+#	define DLL_IMPORT __declspec(dllimport)
+#endif
+
 #ifdef X3789_ENGINE_EXPORT
-#	define DLL_INTERFACE __declspec(dllexport)
+#	define DLL_INTERFACE DLL_EXPORT
 #	define EXT extern "C"
 #else
-#	define DLL_INTERFACE __declspec(dllimport)
+#	define DLL_INTERFACE DLL_IMPORT
 #	define EXT
 #endif
 
@@ -131,3 +139,8 @@ static void GL_ERROR_IMP()
 
 typedef unsigned int uint;
 typedef unsigned short ushort;
+
+#ifndef BOOL
+	typedef bool BOOL
+//#	define BOOL
+#endif
