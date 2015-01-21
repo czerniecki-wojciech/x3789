@@ -141,6 +141,6 @@ typedef unsigned int uint;
 typedef unsigned short ushort;
 
 #ifndef BOOL
-	typedef bool BOOL
+    typedef bool BOOL;
 //#	define BOOL
 #endif
