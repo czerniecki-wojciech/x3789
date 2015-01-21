@@ -2,6 +2,8 @@
 #ifndef __VERTEX_QUEUE_H__
 #define __VERTEX_QUEUE_H__
 
+/*
+
 template<typename T, uint programID>
 class VertexQueue
 {
@@ -48,5 +50,7 @@ VertexQueue<T, programID>::addvertex(T new_one)
 {
 	vertices[vertices_num++] = new_one;
 }
+
+*/
 
 #endif

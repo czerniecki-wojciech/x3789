@@ -1,9 +1,9 @@
 
 #include "stdafx.h"
 
-#include "Shaders\ShaderLoader.h"
+#include <ShaderLoader.h>
 
-#include "ShaderInterface.h"
+#include <ShaderInterface.h>
 
 ShaderInterface* ShaderInterface::instance = NULL;
 

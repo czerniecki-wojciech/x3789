@@ -14,6 +14,7 @@ include_directories(
 	.
 	..
 	../Common
+	./Shaders
 	)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")

@@ -1,6 +1,6 @@
 
 #include <stdafx.h>
-#include <X3789_Engine\Common\ControlInterface.h>
+#include <Common/ControlInterface.h>
 #include "VBOTestClass.h"
 #include <ctime>
 
@@ -41,7 +41,7 @@ public:
 
 float* VBOTestClass::getVerticesWithColors()
 {
-	test_vertex* vertices = (test_vertex*)malloc(CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 8);
+	test_vertex* vertices = (test_vertex*)std::malloc(CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 8);
 
 	for (unsigned int h = 0; h < CUBE_NUM; ++h)
 	{
@@ -75,7 +75,7 @@ float* VBOTestClass::getVerticesWithColors()
 
 GLuint* VBOTestClass::getIndices()
 {
-	GLuint* indices = (GLuint*)malloc(36 * CUBE_NUM * CUBE_NUM * sizeof(GLuint));
+	GLuint* indices = (GLuint*)std::malloc(36 * CUBE_NUM * CUBE_NUM * sizeof(GLuint));
 
 	for (unsigned int i = 0; i < CUBE_NUM * CUBE_NUM; ++i)
 	{
