@@ -9,11 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 MESSAGE("LIB_DIR: " ${LIB_DIR})
 
-add_definitions(-DGLM_FORCE_RADIANS)
-
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	add_definitions(-DSYSTEM_LINUX)
-endif()
+add_definitions(-DGLM_FORCE_RADIANS -Wwrite-strings -std=c++11 -g)
 
 add_subdirectory(X3789_Engine)
 
@@ -26,6 +22,7 @@ add_executable(X3789 ${GAME_SRC})
 include_directories(
 	.
 	./Common
+	..
 	)
 
 find_library(GLFW3DLL_LIB glfw3dll ${LIB_DIR})
