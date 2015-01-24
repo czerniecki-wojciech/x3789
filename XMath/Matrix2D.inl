@@ -19,7 +19,7 @@ Matrix1D<T, width>& Matrix2D<T, width, height>::operator[](uint pos)
 {
 	if (pos < height)
 		return data[pos];
-	__debugbreak();
+	//__debugbreak();
 	return data[0];
 }
 

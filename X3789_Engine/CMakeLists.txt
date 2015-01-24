@@ -6,7 +6,7 @@ FILE(GLOB_RECURSE X3789_Engine_SRC "*.cpp" "*.h")
 
 MESSAGE("Creating X3789_Engine...")
 
-add_definitions(-DX3789_ENGINE_EXPORT -D_CRT_SECURE_NO_WARNINGS)
+add_definitions(-DX3789_ENGINE_EXPORT -D_CRT_SECURE_NO_WARNINGS -g)
 
 add_library(X3789_Engine SHARED ${X3789_Engine_SRC})
 
@@ -18,8 +18,6 @@ include_directories(
 	)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-	add_definitions(-DSYSTEM_LINUX)
-
 	find_library(GLEW_LIB GLEW ${LIB_DIR})
 	find_library(GLFW3_LIB glfw3 ${LIB_DIR})
 	find_library(OPENGLU_LIB GLU ${LIB_DIR})

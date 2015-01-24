@@ -19,7 +19,7 @@ T& Matrix1D<T, width>::operator[](unsigned int pos)
 {
 	if (pos < width)
 		return data[pos];
-	__debugbreak();
+	//__debugbreak();
 	return data[0];
 }
 

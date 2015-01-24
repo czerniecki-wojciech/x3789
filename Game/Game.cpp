@@ -1,25 +1,30 @@
 
 #include "stdafx.h"
-#include <Windows.h>
 
-#include <X3789_Engine\X3789_Engine_Common.h>
-#include <X3789_Engine\ShaderInterface.h>
-#include <X3789_Engine\WindowHolder.h>
-#include <X3789_Engine\WindowInterface.h>
-#include <X3789_Engine\Common\ControlInterface.h>
-#include <X3789_Engine\Common\TextureStorage.h>
-#include <X3789_Engine\VBOTestClass.h>
+#include "X3789_MACRO_VIEWER.h"
 
-#include <X3789_Engine\VertexQueue.h>
+#include <X3789_Engine/X3789_Engine_Common.h>
 
-#include <XMath\XMath.h>
+//#pragma message(MACRO_VIEWER(DLL_INTERFACE))
+//#pragma message(MACRO_VIEWER(SYSTEM_LINUX))
+
+#include <X3789_Engine/ShaderInterface.h>
+#include <X3789_Engine/WindowHolder.h>
+#include <X3789_Engine/WindowInterface.h>
+#include <X3789_Engine/Common/ControlInterface.h>
+#include <X3789_Engine/Common/TextureStorage.h>
+#include <X3789_Engine/VBOTestClass.h>
+
+//#include <X3789_Engine/VertexQueue.h>
+
+#include <XMath/XMath.h>
 
 
 
-#include <X3789_Engine\Tools\Singleton.h>
-#include <iostream>
+#include <X3789_Engine/Tools/Singleton.h>
+//#include <iostream>
 
-VertexQueue<uint, 0>* queue;
+//VertexQueue<uint, 0>* queue;
 
 void tests()
 {
@@ -28,7 +33,7 @@ void tests()
 	public:
 		TestClass(int a)
 		{
-			std::cout << a << std::endl;
+            //std::cout << a << std::endl;
 		}
 	};
 	typedef Singleton<TestClass, int> singl;
@@ -41,10 +46,10 @@ int main(int argc, char* argv[])
 {
 	tests();
 
-	queue = VertexQueue<uint, 0>::getQueue();
+	//queue = VertexQueue<uint, 0>::getQueue();
 
-	LoadLibrary("X3789_Engine");
-	LoadLibrary("SandBox");
+	//LoadLibrary("X3789_Engine");
+	//LoadLibrary("SandBox");
 
 	ShaderInterface::getInstance();
 	TextureStorage::init();

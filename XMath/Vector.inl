@@ -114,7 +114,7 @@ void Vector<T>::trim()
 template<typename T>
 T& Vector<T>::operator[] (unsigned int index)
 {
-	return data[index]
+	return data[index];
 }
 
 #endif

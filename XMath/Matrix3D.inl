@@ -20,7 +20,7 @@ Matrix2D<T, width, height>& Matrix3D<T, width, height, depth>::operator[](uint p
 {
 	if (pos < depth)
 		return data[pos];
-	__debugbreak();
+	//__debugbreak();
 	return data[0];
 }
 

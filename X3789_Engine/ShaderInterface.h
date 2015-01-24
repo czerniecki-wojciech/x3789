@@ -1,5 +1,8 @@
 
 #pragma once
+#include "X3789_MACRO_VIEWER.h"
+
+//#pragma message(MACRO_VIEWER(DLL_INTERFACE))
 
 class DLL_INTERFACE ShaderInterface
 {

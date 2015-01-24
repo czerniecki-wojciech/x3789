@@ -1,9 +1,9 @@
 
 #pragma once
 
-#ifdef SYSTEM_LINUX
-#	define DLL_EXPORT
-#	define DLL_IMPORT
+#ifdef __linux
+#	define DLL_EXPORT __attribute__ ((visibility("default")))
+#	define DLL_IMPORT __attribute__ ((visibility("default")))
 #else
 #	define DLL_EXPORT __declspec(dllexport)
 #	define DLL_IMPORT __declspec(dllimport)
@@ -142,5 +142,5 @@ typedef unsigned short ushort;
 
 #ifndef BOOL
     typedef bool BOOL;
-//#	define BOOL
+    typedef char BYTE;
 #endif
