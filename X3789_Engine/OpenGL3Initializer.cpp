@@ -15,7 +15,7 @@ OpenGL3Initializer::OpenGL3Initializer()
 	glfwWindowHint(GLFW_SAMPLES, 4); //4x antialiasing
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2); //OpenGL 3.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); 
+	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); 
 
 	GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
 
