@@ -9,7 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 MESSAGE("LIB_DIR: " ${LIB_DIR})
 
-add_definitions(-DGLM_FORCE_RADIANS -Wwrite-strings -std=c++11 -g)
+add_definitions(-DGLM_FORCE_RADIANS -std=c++11 -g)
 
 add_subdirectory(X3789_Engine)
 

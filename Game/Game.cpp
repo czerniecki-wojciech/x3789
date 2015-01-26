@@ -14,11 +14,10 @@
 #include <X3789_Engine/Common/ControlInterface.h>
 #include <X3789_Engine/Common/TextureStorage.h>
 #include <X3789_Engine/VBOTestClass.h>
-#include <X3789_Engine/X3789_Engine.h>
 //#include <X3789_Engine/VertexQueue.h>
 
 #include <XMath/XMath.h>
-
+#include "LibraryLoader.h"
 
 
 #include <X3789_Engine/Tools/Singleton.h>
@@ -44,7 +43,9 @@ void tests()
 
 int main(int argc, char* argv[])
 {
-	X3789_Engine_start();
+	LibraryLoader library_loader;
+	library_loader.loadAll();
+
 	tests();
 
 	//queue = VertexQueue<uint, 0>::getQueue();

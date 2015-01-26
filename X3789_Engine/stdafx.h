@@ -37,7 +37,7 @@
 typedef unsigned int uint;
 typedef unsigned short ushort;
 
-#ifndef BOOL
+#ifdef __linux
 	typedef bool BOOL;
 	typedef char BYTE;
 #endif
