@@ -17,12 +17,6 @@
 #	define EXT
 #endif
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
-
-#define CUBE_SIZE 1.0f
-#define CUBE_SIZE_2 0.5f
-
 //Render_METOD
 //#define X3789_RENDER_VAO
 //#define X3789_RENDER_VAO_GEOMETRY
@@ -144,3 +138,12 @@ typedef unsigned short ushort;
     typedef bool BOOL;
     typedef char BYTE;
 #endif
+
+
+const uint SCREEN_WIDTH = 640;
+const uint SCREEN_HEIGHT = 480;
+
+const float CUBE_SIZE = 1.0f;
+const float CUBE_SIZE_2 = 0.5f;
+
+const uint MAX_VERTICES_ON_LIST = 1024;

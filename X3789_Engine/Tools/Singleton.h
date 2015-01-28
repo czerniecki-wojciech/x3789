@@ -30,9 +30,7 @@ Singleton<T, Arguments...>::~Singleton()
 template<typename T, typename... Arguments>
 T* Singleton<T, Arguments...>::getInstance()
 {
-	if (instance)
-		return instance;
-	
+	return instance;
 }
 
 template<typename T, typename... Arguments>
