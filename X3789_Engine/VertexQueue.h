@@ -2,55 +2,25 @@
 #ifndef __VERTEX_QUEUE_H__
 #define __VERTEX_QUEUE_H__
 
-/*
-
-template<typename T, uint programID>
+template<typename T, uint SHADER_ID>
 class VertexQueue
 {
 private:
-	//static VertexQueue* instance;
+	T* vertices_list;
+	uint total_vertices_num;
+	uint shader_id;
 
-	T* vertices;
-	unsigned int vertices_num;
-	
 public:
 	VertexQueue();
 	~VertexQueue();
 
-	void addVertex(T new_one);
+	T* getVerticesListPointer();
+	void addNewVertexToList(const T* vertex);
+	void addNewVerticesToList(const T* vertices, uint vertices_num);
+
 	void reset();
 
-	const T* getVerticesPointer();
-
-	static const uint MAX_VERTICES_NUM = 1000;
+	uint getTotalVerticesNum();
 };
-
-template<typename T, uint programID>
-VertexQueue<T, programID>::VertexQueue()
-	: vertices_num(0)
-{
-	vertices = new T[MAX_VERTICES_NUM];
-}
-
-
-template<typename T, uint programID>
-VertexQueue<T, programID>::~VertexQueue()
-{
-	delete[] vertices;
-}
-
-template<typename T, uint programID>
-VertexQueue<T, programID>::reset()
-{
-	vertices_num = 0;
-}
-
-template<typename T, uint programID>
-VertexQueue<T, programID>::addvertex(T new_one)
-{
-	vertices[vertices_num++] = new_one;
-}
-
-*/
 
 #endif
