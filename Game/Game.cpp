@@ -14,31 +14,23 @@
 #include <X3789_Engine/Common/ControlInterface.h>
 #include <X3789_Engine/Common/TextureStorage.h>
 #include <X3789_Engine/VBOTestClass.h>
-//#include <X3789_Engine/VertexQueue.h>
 
 #include <XMath/XMath.h>
 #include "LibraryLoader.h"
 
 
 #include <X3789_Engine/Tools/Singleton.h>
+#include <X3789_Engine/VertexQueue.h>
+#include <X3789_Engine/Vertex.h>
 //#include <iostream>
 
 //VertexQueue<uint, 0>* queue;
 
 void tests()
 {
-	class TestClass
-	{
-	public:
-		TestClass(int a)
-		{
-            //std::cout << a << std::endl;
-		}
-	};
-	typedef Singleton<TestClass, int> singl;
+	typedef Singleton<VertexQueue<Vertex_RGB, 0>, int> singl;
 
-	singl a(3);
-	TestClass *p = a.getInstance();
+	VertexQueue<Vertex_RGB, 0>* vertexqueue = singl::getInstance();
 }
 
 int main(int argc, char* argv[])
