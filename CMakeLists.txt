@@ -35,7 +35,13 @@ target_link_libraries(X3789
 file(GLOB SHADERS "external_files/Shaders/*")
 file(GLOB TEXTURES "external_files/Textures/*")
 file(GLOB DLLS "external_files/*")
-	
-file(COPY ${SHADERS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/Shaders)
-file(COPY ${TEXTURES} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/Textures)
-file(COPY ${DLLS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    file(COPY ${SHADERS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Shaders)
+    file(COPY ${TEXTURES} DESTINATION ${CMAKE_BINARY_DIR}/bin/Textures)
+    file(COPY ${DLLS} DESTINATION ${CMAKE_BINARY_DIR}/bin)
+else()
+    file(COPY ${SHADERS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/Shaders)
+    file(COPY ${TEXTURES} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/Textures)
+    file(COPY ${DLLS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug)
+endif()
