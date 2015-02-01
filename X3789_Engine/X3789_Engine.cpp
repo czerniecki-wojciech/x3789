@@ -5,7 +5,7 @@
 #include "OpenGL3Initializer.h"
 
 
-void X3789_Engine_start()
+void DLL_INTERFACE X3789_Engine_start()
 {
 	OpenGL3Initializer open_gl3_initializer;
 }

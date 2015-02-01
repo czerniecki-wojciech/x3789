@@ -35,6 +35,9 @@ void VertexQueue<T, SHADER_ID>::addNewVerticesToList(const T* vertices, uint ver
 {
 	memcpy(vertices_list + total_vertices_num * sizeof(T), vertices, vertices_num * sizeof(T));
 	total_vertices_num += vertices_num;
+	
+	if (total_vertices_num >= MAX_VERTICES_ON_LIST)
+		X3789_DEBUG_BREAK;
 }
 
 template<typename T, uint SHADER_ID>
