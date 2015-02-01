@@ -9,7 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 MESSAGE("LIB_DIR: " ${LIB_DIR})
 
-add_definitions(-DGLM_FORCE_RADIANS -std=c++11 -g)
+add_definitions(-DGLM_FORCE_RADIANS)
 
 add_subdirectory(X3789_Engine)
 
@@ -40,8 +40,10 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     file(COPY ${SHADERS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Shaders)
     file(COPY ${TEXTURES} DESTINATION ${CMAKE_BINARY_DIR}/bin/Textures)
     file(COPY ${DLLS} DESTINATION ${CMAKE_BINARY_DIR}/bin)
+	add_definitions(-std=c++11 -g)
 else()
     file(COPY ${SHADERS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/Shaders)
     file(COPY ${TEXTURES} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug/Textures)
     file(COPY ${DLLS} DESTINATION ${CMAKE_BINARY_DIR}/bin/Debug)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()

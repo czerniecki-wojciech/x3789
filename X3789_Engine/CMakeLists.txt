@@ -6,7 +6,7 @@ FILE(GLOB_RECURSE X3789_Engine_SRC "*.cpp" "*.h")
 
 MESSAGE("Creating X3789_Engine...")
 
-add_definitions(-DX3789_ENGINE_EXPORT -D_CRT_SECURE_NO_WARNINGS -g)
+add_definitions(-DX3789_ENGINE_EXPORT -D_CRT_SECURE_NO_WARNINGS)
 
 add_library(X3789_Engine SHARED ${X3789_Engine_SRC})
 
@@ -39,6 +39,8 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 		${MATH_LIB}
 		${XI_LIB}
 	)
+
+	add_definitions(-std=c++11 -g)
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 	find_library(GLEW_LIB glew32 ${LIB_DIR})
 	find_library(GLFW3_LIB glfw3dll ${LIB_DIR})
@@ -49,6 +51,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 		${GLFW3_LIB}
 		${OPENGL_LIB}
 	)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 MESSAGE("GLEW_LIB: " ${GLEW_LIB})
