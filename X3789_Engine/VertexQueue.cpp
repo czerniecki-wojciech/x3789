@@ -33,7 +33,7 @@ void VertexQueue<T, SHADER_ID>::addNewVertexToList(const T* vertex)
 template<typename T, uint SHADER_ID>
 void VertexQueue<T, SHADER_ID>::addNewVerticesToList(const T* vertices, uint vertices_num)
 {
-	memcpy(vertices_list + total_vertices_num * sizeof(T), vertex, vertices_num * sizeof(T));
+	memcpy(vertices_list + total_vertices_num * sizeof(T), vertices, vertices_num * sizeof(T));
 	total_vertices_num += vertices_num;
 }
 

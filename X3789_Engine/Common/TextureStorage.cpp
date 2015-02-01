@@ -37,7 +37,7 @@ TextureStorage::TextureStorage()
 	textures[TEXTURE_SKY] = new TextureBMP("Texture/sky.bmp");
 }
 
-void TextureStorage::useTexture(Texture texture, GLuint shader, char* sampler_name)
+void TextureStorage::useTexture(Texture texture, GLuint shader, const char* sampler_name)
 {
 	textures[texture]->bindToProgram(shader, sampler_name);
 	textures[texture]->loadToUniform();

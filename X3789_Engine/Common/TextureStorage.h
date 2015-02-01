@@ -28,7 +28,7 @@ public:
 		return TOTAL_TEXTURE_NUM;
 	}
 
-	static void useTexture(Texture texture, GLuint shader, char* sampler_name = "texture0");
+    static void useTexture(Texture texture, GLuint shader, const char* sampler_name = "texture0");
 
 	static TextureStorage* init()
 	{

@@ -5,7 +5,7 @@
 #include <fstream>
 
 
-TextureBMP::TextureBMP(char* filename)
+TextureBMP::TextureBMP(const char* filename)
 	:data(0)
 {
 	FILE* file = fopen(filename, "rb");

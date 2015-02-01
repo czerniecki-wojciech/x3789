@@ -18,7 +18,7 @@ public:
 		, data(0)
 		, sampler_ID(-1)
 	{}
-	TextureBMP(char* filename);
+    TextureBMP(const char* filename);
 	~TextureBMP();
 
 	inline unsigned char* getData()
@@ -41,7 +41,7 @@ public:
 	{
 		return texture_ID;
 	}
-	inline void bindToProgram(GLuint shader, char* sampler_name)
+    inline void bindToProgram(GLuint shader, const char* sampler_name)
 	{
 		if (sampler_ID > -1)
 		{

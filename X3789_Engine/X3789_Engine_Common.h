@@ -146,4 +146,4 @@ const uint SCREEN_HEIGHT = 480;
 const float CUBE_SIZE = 1.0f;
 const float CUBE_SIZE_2 = 0.5f;
 
-const uint MAX_VERTICES_ON_LIST = 1024;
+const uint MAX_VERTICES_ON_LIST = 36000; //10 * 10 * 10 *36
