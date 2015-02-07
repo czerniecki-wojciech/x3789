@@ -3,7 +3,7 @@
 #define __VERTEX_QUEUE_H__
 
 template<typename T, uint SHADER_ID>
-class VertexQueue
+class VerticesList
 {
 private:
 	T* vertices_list;
@@ -11,8 +11,8 @@ private:
 	uint shader_id;
 
 public:
-	VertexQueue();
-	~VertexQueue();
+	VerticesList();
+	~VerticesList();
 
 	T* getVerticesListPointer();
 	void addNewVertexToList(const T* vertex);

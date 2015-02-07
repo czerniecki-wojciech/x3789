@@ -2,13 +2,19 @@
 #ifndef __DRAWER_H__
 #define __DRAWER_H__
 
-class Drawer
-{
-    Drawer();
-    ~Drawer();
+#include <X3789_Engine\Tools\Singleton.h>
 
-    template<typename T>
-    void drawVerticesList(T vertices_list);
+
+class DrawerImpl
+{
+	friend class Singleton<DrawerImpl, void>;
+private:
+	DrawerImpl();
+	~DrawerImpl();
+public:
+	void registerVerticesList(VerticesListBase* vertices_list_base);
+	void drawAll();
 };
 
+typedef Singleton<DrawerImpl, void> Drawer;
 #endif

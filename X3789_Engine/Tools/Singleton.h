@@ -24,7 +24,7 @@ Singleton<T, Arguments...>::Singleton(Arguments... args)
 template<typename T, typename... Arguments>
 Singleton<T, Arguments...>::~Singleton()
 {
-	
+	delete instance;
 }
 
 template<typename T, typename... Arguments>
