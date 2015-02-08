@@ -4,10 +4,12 @@
 
 class VerticesListBase
 {
+	friend class ScreenDrawer;
 protected:
 	void* vertices_data;
 	uint total_vertices_num;
 	uint shader_id;
+	virtual void draw() = 0;
 
 public:
 	virtual ~VerticesListBase();
@@ -20,7 +22,7 @@ public:
 template<typename T, uint SHADER_ID>
 class VerticesList : public VerticesListBase
 {
-
+	void draw();
 public:
 	VerticesList();
 	~VerticesList();

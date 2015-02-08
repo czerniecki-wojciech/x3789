@@ -48,3 +48,9 @@ void VerticesList<T, SHADER_ID>::addNewVerticesToList(const T* vertices, uint ve
 	memcpy(vertices_data + total_vertices_num * sizeof(T), vertices, vertices_num * sizeof(T));
 	total_vertices_num += vertices_num;
 }
+
+template<typename T, uint SHADER_ID>
+void VerticesList<T, SHADER_ID>::draw(const T* vertices, uint vertices_num)
+{
+	
+}
