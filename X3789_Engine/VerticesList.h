@@ -1,26 +1,31 @@
 
-#ifndef __VERTEX_QUEUE_H__
-#define __VERTEX_QUEUE_H__
+#ifndef __VERTICES_LIST_H__
+#define __VERTICES_LIST_H__
 
-template<typename T, uint SHADER_ID>
-class VerticesList
+class VerticesListBase
 {
-private:
-	T* vertices_list;
+protected:
+	void* vertices_data;
 	uint total_vertices_num;
 	uint shader_id;
 
 public:
+	virtual ~VerticesListBase();
+	
+	uint getTotalVerticesNum();
+	void* getVerticesListPointer();
+	void reset();
+};
+
+template<typename T, uint SHADER_ID>
+class VerticesList : public VerticesListBase
+{
+
+public:
 	VerticesList();
 	~VerticesList();
-
-	T* getVerticesListPointer();
 	void addNewVertexToList(const T* vertex);
 	void addNewVerticesToList(const T* vertices, uint vertices_num);
-
-	void reset();
-
-	uint getTotalVerticesNum();
 };
 
 #endif

@@ -20,7 +20,7 @@
 
 
 #include <X3789_Engine/Tools/Singleton.h>
-#include <X3789_Engine/VertexQueue.h>
+#include <X3789_Engine/VerticesList.h>
 #include <X3789_Engine/Vertex.h>
 //#include <iostream>
 
@@ -28,9 +28,9 @@
 
 void tests()
 {
-	typedef Singleton<VertexQueue<Vertex_RGB, 0>, int> singl;
+	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
-	VertexQueue<Vertex_RGB, 0>* vertexqueue = singl::getInstance();
+	VerticesList<Vertex_RGB, 0>* vertices_list = singl::getInstance();
 }
 
 int main(int argc, char* argv[])
