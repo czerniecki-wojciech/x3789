@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 set(CMAKE_LEGACY_CYGWIN_WIN32 0)
 
 project(X3789_Engine)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    add_definitions(-DSYSTEM_LINUX)
+endif()
+
 FILE(GLOB_RECURSE X3789_Engine_SRC "*.cpp" "*.h")
 
 MESSAGE("Creating X3789_Engine...")

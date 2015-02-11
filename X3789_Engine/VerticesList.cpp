@@ -28,7 +28,7 @@ VerticesList<T, SHADER_ID>::VerticesList()
 {
 	total_vertices_num = 0;
 	shader_id = SHADER_ID;
-	vertices_list = (void*)malloc(sizeof(T) * MAX_VERTICES_ON_LIST);
+    vertices_data = (void*)malloc(sizeof(T) * MAX_VERTICES_ON_LIST);
 }
 
 
@@ -50,7 +50,7 @@ void VerticesList<T, SHADER_ID>::addNewVerticesToList(const T* vertices, uint ve
 }
 
 template<typename T, uint SHADER_ID>
-void VerticesList<T, SHADER_ID>::draw(const T* vertices, uint vertices_num)
+void VerticesList<T, SHADER_ID>::draw()
 {
 	
 }

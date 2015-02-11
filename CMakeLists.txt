@@ -15,6 +15,10 @@ add_subdirectory(X3789_Engine)
 
 project("X3789")
 
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    add_definitions(-DSYSTEM_LINUX)
+endif()
+
 file(GLOB GAME_SRC "Game/*.cpp")
 
 add_executable(X3789 ${GAME_SRC})
