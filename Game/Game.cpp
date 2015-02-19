@@ -14,6 +14,7 @@
 #include <X3789_Engine/Common/ControlInterface.h>
 #include <X3789_Engine/Common/TextureStorage.h>
 #include <X3789_Engine/VBOTestClass.h>
+#include <X3789_Engine/VAOTestClass.h>
 
 #include <XMath/XMath.h>
 #include "LibraryLoader.h"
@@ -48,8 +49,11 @@ int main(int argc, char* argv[])
 	ShaderInterface::getInstance();
 	TextureStorage::init();
 
-	VBOTestClass vbotc;
-	vbotc.PreDraw();
+	/*VBOTestClass vbotc;
+	vbotc.PreDraw();*/
+
+	VAOTestClass vaotc;
+	vaotc.PreDraw();
 
 	WindowInterface::SetCursorPosCenter();
 
@@ -58,12 +62,12 @@ int main(int argc, char* argv[])
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		ControlInterface::getInstance()->computeMVP();
 
-		vbotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));// TEXTURED));
+		vaotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));// TEXTURED));
 
 		WindowInterface::endFrameDraw();
 	} while(!WindowInterface::GetKey(GLFW_KEY_ESCAPE) && !WindowInterface::WindowShouldClose());
 
-	vbotc.PostDraw();
+	vaotc.PostDraw();
 
 	return 0;
 }
