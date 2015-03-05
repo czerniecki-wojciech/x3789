@@ -55,6 +55,9 @@ int main(int argc, char* argv[])
 	VAOTestClass vaotc;
 	vaotc.PreDraw();
 
+	VBOTestClass vbotc;
+	vbotc.PreDraw();
+
 	WindowInterface::SetCursorPosCenter();
 
 	do
@@ -62,7 +65,7 @@ int main(int argc, char* argv[])
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		ControlInterface::getInstance()->computeMVP();
 
-		vaotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));// TEXTURED));
+		vbotc.Draw(ShaderInterface::getInstance()->getShader(X3789_SHADER_DEFAULT_SOLID));// TEXTURED));
 
 		WindowInterface::endFrameDraw();
 	} while(!WindowInterface::GetKey(GLFW_KEY_ESCAPE) && !WindowInterface::WindowShouldClose());

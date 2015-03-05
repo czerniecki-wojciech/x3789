@@ -41,6 +41,6 @@ public:
 	void PostDraw();
 	~VAOTestClass();
 
-	float* getVerticesWithColors();
+	void generateVertices();
 };
 

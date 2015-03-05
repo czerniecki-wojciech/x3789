@@ -41,7 +41,7 @@ public:
 VertexCollector::VertexCollector()
     : vertices_num(0)
 {
-    vertices = (test_vertex*)malloc(1000 * sizeof(test_vertex));
+    vertices = (test_vertex*)malloc(10000 * sizeof(test_vertex));
 }
 
 VertexCollector::~VertexCollector()
@@ -55,72 +55,68 @@ void VertexCollector::addVertex(float x, float y, float z, float r, float g, flo
     vertices[vertices_num++] = v;
 }
 
-float* VAOTestClass::getVerticesWithColors()
+void VAOTestClass::generateVertices()
 {
-    test_vertex* vertices = (test_vertex*)std::malloc(CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 6 * 6);
-
-	for (unsigned int h = 0; h < CUBE_NUM; ++h)
+    for (unsigned int h = 0; h < CUBE_NUM; ++h)
 	{
 		for (unsigned int v = 0; v < CUBE_NUM; ++v)
         {
             //front1
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            //front2
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            //front2
             collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             //back1
-/*            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             //back2
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
             //left1
-            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
             collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
-            //left2
             collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
+            //left2
             collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 0.0f);
             //right1
-            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
             //right2
-            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 0.0f, 0.0f);
             //top1
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
             //top2
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v + CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v + CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 1.0f);
             //bottom1
-            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
             //bottom2
-            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 1.0f, 1.0f, 1.0f);
-*/
+            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 - CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
+            collector.addVertex(h + CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
+            collector.addVertex(h - CUBE_SIZE_2, v - CUBE_SIZE_2, 0 + CUBE_SIZE_2, 0.0f, 1.0f, 0.0f);
 		}
 	}
-	printf("vertices num: %d(%d bytes)\n", CUBE_NUM * CUBE_NUM * 8, CUBE_NUM * CUBE_NUM * sizeof(test_vertex) * 8);
-
-	return (float*)vertices;
 }
 
 void VAOTestClass::PreDraw()
 {
+	generateVertices();
+
     float* vertices_ptr = reinterpret_cast<float*>(collector.getVertices());
 
 	//vertices with colros
