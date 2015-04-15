@@ -1,5 +1,6 @@
 #pragma once
 #include <thread>
+#include <mutex>
 class XScopedThread
 {
 	std::thread th;
@@ -22,6 +23,11 @@ public:
 	XScopedThread(std::thread _th)
 		: th(std::move(_th))
 	{
+	}
+
+	XScopedThread(XScopedThread&& rval)
+	{
+		th = std::move(rval.th);
 	}
 
 	~XScopedThread()

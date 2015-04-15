@@ -27,8 +27,47 @@
 
 //VertexQueue<uint, 0>* queue;
 
+//--test1
+#include <X3789_Engine\XScopedThread.h>
+#include <X3789_Engine\XThreadSafeQueue.h>
+#include <thread>
+#include <chrono>
+#include <iostream>
+//--end test1
+
+void producer(XThreadSafeQueue<float> q)
+{
+	for (float i = 0.0f; i < 30.0f; ++i)
+	{
+		q.push(i);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	}
+}
+
+void customer(XThreadSafeQueue<float> q, float id)
+{
+	for (;;)
+	{
+		float r;
+		q.pop(std::ref(r));
+		std::cout << "thread" << id << "takes" << r << std::endl;
+	}
+}
+
+void test1()
+{
+	XThreadSafeQueue<float> q;
+
+	XScopedThread th1(producer, q);
+	XScopedThread th2(customer, q, 1);
+	XScopedThread th3(customer, q, 2);
+	XScopedThread th4(customer, q, 3);
+}
+
 void tests()
 {
+	void test1();
+
 	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
 	VerticesList<Vertex_RGB, 0>* vertices_list = singl::getInstance();
