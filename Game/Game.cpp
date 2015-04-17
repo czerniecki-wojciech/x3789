@@ -28,14 +28,14 @@
 //VertexQueue<uint, 0>* queue;
 
 //--test1
-#include <X3789_Engine\XScopedThread.h>
-#include <X3789_Engine\XThreadSafeQueue.h>
+#include <X3789_Engine/XScopedThread.h>
+#include <X3789_Engine/XThreadSafeQueue.h>
 #include <thread>
 #include <chrono>
 #include <iostream>
 //--end test1
 
-void producer(XThreadSafeQueue<float> q)
+void producer(ThreadSafeQueue<float> q)
 {
 	for (float i = 0.0f; i < 30.0f; ++i)
 	{
@@ -44,7 +44,7 @@ void producer(XThreadSafeQueue<float> q)
 	}
 }
 
-void customer(XThreadSafeQueue<float> q, float id)
+void customer(ThreadSafeQueue<float> q, float id)
 {
 	for (;;)
 	{
@@ -56,12 +56,12 @@ void customer(XThreadSafeQueue<float> q, float id)
 
 void test1()
 {
-	XThreadSafeQueue<float> q;
+    ThreadSafeQueue<float> q;
 
-	XScopedThread th1(producer, q);
+    XScopedThread th1(producer, std::ref(q));/*
 	XScopedThread th2(customer, q, 1);
 	XScopedThread th3(customer, q, 2);
-	XScopedThread th4(customer, q, 3);
+    XScopedThread th4(customer, q, 3);*/
 }
 
 void tests()
