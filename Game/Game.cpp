@@ -33,40 +33,47 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
+
+#include <memory>
 //--end test1
 
-void producer(ThreadSafeQueue<float> q)
+void producer(std::shared_ptr<XThreadSafeQueue<float>> q)
 {
 	for (float i = 0.0f; i < 30.0f; ++i)
 	{
-		q.push(i);
+		q->push(i);
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
 }
 
-void customer(ThreadSafeQueue<float> q, float id)
+void customer(std::shared_ptr<XThreadSafeQueue<float>> q, float id)
 {
 	for (;;)
 	{
 		float r;
-		q.pop(std::ref(r));
+		q->pop(std::ref(r));
 		std::cout << "thread" << id << "takes" << r << std::endl;
 	}
 }
 
+void doNothing(int i)
+{
+	std::cout << i << std::endl;
+}
+
+    XThreadSafeQueue<float> q;
 void test1()
 {
-    ThreadSafeQueue<float> q;
-
-    XScopedThread th1(producer, std::ref(q));/*
-	XScopedThread th2(customer, q, 1);
+	std::shared_ptr<XThreadSafeQueue<float>> p(&q);
+	XScopedThread th1(producer, p);
+	XScopedThread th2(customer, p, 1);/*
 	XScopedThread th3(customer, q, 2);
     XScopedThread th4(customer, q, 3);*/
 }
 
 void tests()
 {
-	void test1();
+	test1();
 
 	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
