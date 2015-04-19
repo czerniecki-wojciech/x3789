@@ -39,7 +39,7 @@
 
 void producer(std::shared_ptr<XThreadSafeQueue<float>> q)
 {
-	for (float i = 0.0f; i < 30.0f; ++i)
+    for (float i = 0.0f; i < 100.0f; ++i)
 	{
 		q->push(i);
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -52,7 +52,7 @@ void customer(std::shared_ptr<XThreadSafeQueue<float>> q, float id)
 	{
 		float r;
 		q->pop(std::ref(r));
-		std::cout << "thread" << id << "takes" << r << std::endl;
+        std::cout << "thread " << id << " takes " << r << std::endl;
 	}
 }
 
@@ -66,14 +66,14 @@ void test1()
 {
 	std::shared_ptr<XThreadSafeQueue<float>> p(&q);
 	XScopedThread th1(producer, p);
-	XScopedThread th2(customer, p, 1);/*
-	XScopedThread th3(customer, q, 2);
-    XScopedThread th4(customer, q, 3);*/
+    XScopedThread th2(customer, p, 1);
+    XScopedThread th3(customer, p, 2);
+    XScopedThread th4(customer, p, 3);
 }
 
 void tests()
 {
-	test1();
+    test1();
 
 	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
