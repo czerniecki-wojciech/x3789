@@ -73,7 +73,7 @@ void test1()
 
 void tests()
 {
-    test1();
+    //test1();
 
 	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
