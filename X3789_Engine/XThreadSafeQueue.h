@@ -3,7 +3,7 @@
 #include <mutex>
 #include <queue>
 #include <thread>
-
+/*
 template<typename T>
 class XThreadSafeQueue
 {
@@ -26,18 +26,6 @@ public:
 		q.push(refe);
 		cond.notify_one();
 	}
-
-	/*T& pop()
-	{
-		std::unique_lock<std::mutex> ul(mtx);
-
-		while (q.empty())
-			cond.wait(ul);
-
-		T& refe = q.front();
-		q.pop();
-		return refe;
-	}*/
 	void pop(T& refe)
 	{
 		std::unique_lock<std::mutex> ug(mtx);
@@ -49,11 +37,12 @@ public:
 		q.pop();
 	}
 };
+*/
 
-/*
+using namespace std;
 
 template<typename T>
-class ThreadSafeQueue
+class XThreadSafeQueue
 {
 private:
 queue<T> q;
@@ -86,4 +75,3 @@ refe = q.front();
 q.pop();
 }
 };
-*/
