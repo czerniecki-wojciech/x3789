@@ -13,6 +13,14 @@ private:
 	std::mutex mtx;
 
 public:
+	XThreadSafeQueue() {}
+	XThreadSafeQueue(const XThreadSafeQueue<T>& r)
+		: q(std::move(r.q))
+		, cond(std::move(r.cond))
+		, mtx(std::move(r.mtx))
+	{
+
+	}
 	void push(const T& refe)
 	{
 		std::lock_guard<std::mutex> lg(mtx);
@@ -22,7 +30,7 @@ public:
 
 	void push(T&& refe)
 	{
-		lock_guard<std::mutex> lg(mtx);
+        std::lock_guard<std::mutex> lg(mtx);
 		q.push(refe);
 		cond.notify_one();
 	}
@@ -35,6 +43,11 @@ public:
 
 		refe = q.front();
 		q.pop();
+	}
+
+	XThreadSafeQueue<T>& ref()
+	{
+		return *this;
 	}
 };
 */

@@ -28,8 +28,8 @@
 //VertexQueue<uint, 0>* queue;
 
 //--test1
-#include <X3789_Engine\XScopedThread.h>
-#include <X3789_Engine\XThreadSafeQueue.h>
+#include <X3789_Engine/XScopedThread.h>
+#include <X3789_Engine/XThreadSafeQueue.h>
 #include <thread>
 #include <chrono>
 #include <iostream>
@@ -38,7 +38,7 @@
 
 void producer(std::shared_ptr<XThreadSafeQueue<float>> q)
 {
-	for (float i = 0.0f; i < 30.0f; ++i)
+    for (float i = 0.0f; i < 100.0f; ++i)
 	{
 		q->push(i);
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -55,6 +55,12 @@ void customer(std::shared_ptr<XThreadSafeQueue<float>> q, float id)
 	}
 }
 
+void doNothing(int i)
+{
+	std::cout << i << std::endl;
+}
+
+    XThreadSafeQueue<float> q;
 void test1()
 {
 	XThreadSafeQueue<float> q;
