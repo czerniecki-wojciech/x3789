@@ -5,12 +5,12 @@
 #	include <Windows.h>
 #endif
 
-#	include <X3789_Engine/X3789_Engine.h>
+#include <X3789_Engine/X3789_Engine.h>
 
 void LibraryLoader::loadAll()
 {
 #ifndef __linux
-	LoadLibrary("X3789_Engine");
+    //LoadLibrary("X3789_Engine");
 #endif
 	X3789_Engine_start();
 }

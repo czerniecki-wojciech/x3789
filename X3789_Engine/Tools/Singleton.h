@@ -2,38 +2,37 @@
 #ifndef __SINGLETON_H__
 #define __SINGLETON_H__
 
+#include <memory>
+#include <mutex>
+
 template<typename T, typename... Arguments>
 class Singleton
 {
 private:
-	static T* instance;
+    static std::shared_ptr<T> instance;
+    static std::once_flag is_initialized;
+    void initializeNew(Arguments... args)
+    {
+        instance = std::make_shared<T>(args...);
+    }
+
 public:
-	static T* getInstance();
-	Singleton(Arguments... args);
-	~Singleton();
+    static std::shared_ptr<T> getInstance()
+    {
+        return instance;
+    }
+
+    Singleton(Arguments... args)
+    {
+        std::call_once(is_initialized, initializeNew, args...);
+    }
+    ~Singleton()
+    {
+        delete instance;
+    }
 };
 
-
 template<typename T, typename... Arguments>
-Singleton<T, Arguments...>::Singleton(Arguments... args)
-{
-	if (!instance)
-		instance = new T(args...);
-}
-
-template<typename T, typename... Arguments>
-Singleton<T, Arguments...>::~Singleton()
-{
-	delete instance;
-}
-
-template<typename T, typename... Arguments>
-T* Singleton<T, Arguments...>::getInstance()
-{
-	return instance;
-}
-
-template<typename T, typename... Arguments>
-T* Singleton<T, Arguments...>::instance = 0;
+std::shared_ptr<T> Singleton<T, Arguments...>::instance;
 
 #endif

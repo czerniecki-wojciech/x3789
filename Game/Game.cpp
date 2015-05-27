@@ -8,6 +8,7 @@
 //#pragma message(MACRO_VIEWER(DLL_INTERFACE))
 //#pragma message(MACRO_VIEWER(SYSTEM_LINUX))
 
+#include <X3789_Engine/X3789_Engine.h>
 #include <X3789_Engine/ShaderInterface.h>
 #include <X3789_Engine/WindowHolder.h>
 #include <X3789_Engine/WindowInterface.h>
@@ -17,7 +18,7 @@
 #include <X3789_Engine/VAOTestClass.h>
 
 #include <XMath/XMath.h>
-#include "LibraryLoader.h"
+//#include "LibraryLoader.h"
 
 
 #include <X3789_Engine/Tools/Singleton.h>
@@ -79,13 +80,12 @@ void tests()
 
 	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
-	VerticesList<Vertex_RGB, 0>* vertices_list = singl::getInstance();
+    std::shared_ptr<VerticesList<Vertex_RGB, 0>> vertices_list = singl::getInstance();
 }
 
 int main(int argc, char* argv[])
 {
-	LibraryLoader library_loader;
-	library_loader.loadAll();
+    X3789_Engine_start();
 
 	tests();
 
