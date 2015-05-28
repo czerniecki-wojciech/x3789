@@ -18,7 +18,6 @@
 #include <X3789_Engine/VAOTestClass.h>
 
 #include <XMath/XMath.h>
-//#include "LibraryLoader.h"
 
 
 #include <X3789_Engine/Tools/Singleton.h>
@@ -90,9 +89,6 @@ int main(int argc, char* argv[])
 	tests();
 
 	//queue = VertexQueue<uint, 0>::getQueue();
-
-	//LoadLibrary("X3789_Engine");
-	//LoadLibrary("SandBox");
 
 	ShaderInterface::getInstance();
 	TextureStorage::init();
