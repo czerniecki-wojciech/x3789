@@ -5,34 +5,36 @@
 #include <memory>
 #include <mutex>
 
-template<typename T, typename... Arguments>
+template<typename T>
 class Singleton
 {
 private:
-    static std::shared_ptr<T> instance;
-    static std::once_flag is_initialized;
-    void initializeNew(Arguments... args)
-    {
-        instance = std::make_shared<T>(args...);
-    }
+	static std::once_flag once_flag;
+	static std::shared_ptr<T> instance;
+
+	static void initialize()
+	{
+		instance = std::make_shared<T>();
+	}
 
 public:
-    static std::shared_ptr<T> getInstance()
-    {
-        return instance;
-    }
-
-    Singleton(Arguments... args)
-    {
-        std::call_once(is_initialized, initializeNew, args...);
-    }
-    ~Singleton()
-    {
-        delete instance;
-    }
+	static std::shared_ptr<T> getInstance()
+	{
+		std::call_once(once_flag, initialize);
+		if (instance)
+			return instance;
+		else
+			return getInstance();
+	}
 };
 
-template<typename T, typename... Arguments>
-std::shared_ptr<T> Singleton<T, Arguments...>::instance;
+template<typename T>
+std::shared_ptr<T> Singleton<T>::instance;
+
+template<typename T>
+std::once_flag Singleton<T>::once_flag;
+
+//template<typename T, typename... Arguments>
+//std::shared_ptr<T> Singleton<T, Arguments...>::instance;
 
 #endif

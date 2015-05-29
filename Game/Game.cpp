@@ -96,20 +96,34 @@ void tests()
 {
 	//test1();
 
+	class TestOne
+	{
+	private:
+		unsigned int number;
+	public:
+		TestOne() : number(0)
+		{}
+		void increment()
+		{
+			++number;
+		}
+		void print()
+		{
+			std::cout << number << std::endl;
+		}
 
-	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
-
-    std::shared_ptr<VerticesList<Vertex_RGB, 0>> vertices_list = singl::getInstance();
-
-    Singleton<TestOne> test1;
-    test1.getInstance()->increment();
-    test1.getInstance()->printIt();
-
-    Singleton<TestOne> test2;
-    test2.getInstance()->printIt();
+		friend class Singleton < TestOne > ;
+	};
 
 
-    std::cout << &*vertices_list << " " << &*singl::getInstance() << std::endl;
+	Singleton<TestOne>::getInstance()->print();
+	Singleton<TestOne>::getInstance()->increment();
+
+	Singleton<TestOne>::getInstance()->print();
+	Singleton<TestOne>::getInstance()->increment();
+
+	Singleton<TestOne>::getInstance()->print();
+	Singleton<TestOne>::getInstance()->increment();
 }
 
 int main(int argc, char* argv[])
