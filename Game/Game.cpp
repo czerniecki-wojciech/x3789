@@ -73,13 +73,43 @@ void test1()
 	XScopedThread th4(customer, p, 3);
 }
 
+
+class TestOne
+{
+public:
+    static int number;
+    TestOne()
+    {
+        number = 0;
+    }
+    void increment()
+    {
+        ++number;
+    }
+    void printIt()
+    {
+        std::cout << number << std::endl;
+    }
+};
+
 void tests()
 {
 	//test1();
 
+
 	typedef Singleton<VerticesList<Vertex_RGB, 0>, int> singl;
 
     std::shared_ptr<VerticesList<Vertex_RGB, 0>> vertices_list = singl::getInstance();
+
+    Singleton<TestOne> test1;
+    test1.getInstance()->increment();
+    test1.getInstance()->printIt();
+
+    Singleton<TestOne> test2;
+    test2.getInstance()->printIt();
+
+
+    std::cout << &*vertices_list << " " << &*singl::getInstance() << std::endl;
 }
 
 int main(int argc, char* argv[])
