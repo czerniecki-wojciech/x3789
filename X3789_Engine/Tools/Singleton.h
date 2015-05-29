@@ -34,7 +34,4 @@ std::shared_ptr<T> Singleton<T>::instance;
 template<typename T>
 std::once_flag Singleton<T>::once_flag;
 
-//template<typename T, typename... Arguments>
-//std::shared_ptr<T> Singleton<T, Arguments...>::instance;
-
 #endif

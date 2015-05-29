@@ -21,7 +21,6 @@
 
 
 #include <X3789_Engine/Tools/Singleton.h>
-#include <X3789_Engine/VerticesList.h>
 #include <X3789_Engine/Vertex.h>
 //#include <iostream>
 
