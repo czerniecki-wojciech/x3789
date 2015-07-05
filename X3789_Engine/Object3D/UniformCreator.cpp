@@ -9,7 +9,7 @@ const unsigned int UniformCreator::size_of_float = sizeof(float);
 UniformCreator::UniformCreator()
 {
 	//304
-	temp_memory = (BYTE*)malloc(4 * size_of_uniform_base + 4 * 16 * size_of_float);
+    temp_memory = (BYTE*)malloc(4 * (size_of_uniform_base + 16 * size_of_float);
 }
 
 
