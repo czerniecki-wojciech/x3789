@@ -3,10 +3,7 @@
 #include "OpenGL3Initializer.h"
 #include "WindowHolder.h"
 
-//GLFWwindow*
-WindowHolder* WindowHolder::instance = NULL;
-
-WindowHolder::WindowHolder(void)
+_WindowHolder::_WindowHolder(void)
 {
 	
 }

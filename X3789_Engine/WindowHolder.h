@@ -2,24 +2,19 @@
 #ifndef __WINDOW_HOLDER_H__
 #define __WINDOW_HOLDER_H__
 
-class DLL_INTERFACE WindowHolder
+#include "Tools/Singleton.h"
+
+class DLL_INTERFACE _WindowHolder
 {
-	static WindowHolder* instance;
+    static _WindowHolder* instance;
 	GLFWwindow* window;
 protected:
-	//static WindowHolder* m_istance;
-	WindowHolder(void);
+    //static WindowHolder* m_istance;
 	//WindowHolder(const WindowHolder&);
 	//WindowHolder& operator=(const WindowHolder&);
 public:
-
-    static WindowHolder* getInstance()
-	{
-		if (!instance)
-			instance = new WindowHolder();
-		return instance;
-	}
-	~WindowHolder()
+    _WindowHolder(void);
+    ~_WindowHolder()
 	{}
 
     GLFWwindow* getWindow()
@@ -31,7 +26,11 @@ public:
 	{
 		window = new_window;
 	}
+
+    friend class Singleton<_WindowHolder>;
 };
+
+typedef Singleton<_WindowHolder> WindowHolder;
 
 #endif
 
