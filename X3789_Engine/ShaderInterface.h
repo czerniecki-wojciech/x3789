@@ -1,31 +1,28 @@
 
 #pragma once
 #include "X3789_MACRO_VIEWER.h"
+#include "Tools/Singleton.h"
 
 //#pragma message(MACRO_VIEWER(DLL_INTERFACE))
 
-class DLL_INTERFACE ShaderInterface
+class DLL_INTERFACE _ShaderInterface
 {
 private:
-	static ShaderInterface* instance;
-	GLuint shaders_id[SHADER_TOTAL_NUM];
-	ShaderInterface();
+    GLuint shaders_id[SHADER_TOTAL_NUM];
 
-	void loadShaders();
+    void loadShaders();
 
 public:
-	static ShaderInterface* getInstance()
-	{
-		if (!instance)
-			instance = new ShaderInterface();
-		return instance;
-	}
+    _ShaderInterface();
 
 	GLuint getShader(Shader shader_name)
 	{
 		return shaders_id[shader_name];
 	}
 
-	~ShaderInterface();
+    ~_ShaderInterface();
+
+    friend class Singleton<_ShaderInterface>;
 };
 
+typedef Singleton<_ShaderInterface> ShaderInterface;

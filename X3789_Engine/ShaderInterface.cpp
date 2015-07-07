@@ -5,17 +5,15 @@
 
 #include <ShaderInterface.h>
 
-ShaderInterface* ShaderInterface::instance = NULL;
-
-ShaderInterface::ShaderInterface()
+_ShaderInterface::_ShaderInterface()
 {
 	this->loadShaders();
 }
 
-ShaderInterface::~ShaderInterface()
+_ShaderInterface::~_ShaderInterface()
 {}
 
-void ShaderInterface::loadShaders()
+void _ShaderInterface::loadShaders()
 {
 	//shaders_id[SHADER_DEFAULT_SOLID] =  ShaderLoader::loadShader("Shaders/SimpleVertexShader.vertexshader", "Shaders/SimpleFragmentShader.fragmentshader");
 	shaders_id[X3789_SHADER_DEFAULT_SOLID] = ShaderLoader::createShader();
