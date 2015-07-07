@@ -6,18 +6,18 @@ class  WindowInterface
 public:
 	static int GetKey(int key)
 	{
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		return ::glfwGetKey(window, key);
 	}
 
 	static void SetCursorPos(GLuint x, GLuint y){
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		::glfwSetCursorPos(window, 1024 / 2, 768 / 2);
 	}
 
 	static void GetCursorPos(float &x, float &y)
 	{
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		double _x, _y;
 
 		glfwGetCursorPos(window, &_x, &_y);
@@ -27,13 +27,13 @@ public:
 
 	static void SetCursorPosCenter()
 	{
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		glfwSetCursorPos(window, SCREEN_WIDTH * 0.5f, SCREEN_HEIGHT * 0.5f);
 	}
 
 	static int WindowShouldClose()
 	{
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		return ::glfwWindowShouldClose(window);
 	}
 
@@ -44,7 +44,7 @@ public:
 		static char title[100];
 		static float mspf;
 
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		static double last_time = glfwGetTime();
 		current_time = glfwGetTime();
 
@@ -65,7 +65,7 @@ public:
 
 	static void endFrameDraw()
 	{
-		static GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+        static GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 

@@ -17,13 +17,13 @@ OpenGL3Initializer::OpenGL3Initializer()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); 
 
-	GLFWwindow* window = WindowHolder::getWindowHolder()->getWindow();
+    GLFWwindow* window = WindowHolder::getInstance()->getWindow();
 
 	char title[70];
 
 	sprintf(title, "X3789 by ArkiNis, Compilation %s", __TIMESTAMP__);
 	
-	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, title, NULL, NULL);
+    window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, title, NULL, NULL);
 	if (window == NULL)
 	{
 		fprintf(stderr, "Failed to open GLFW window.");
@@ -42,7 +42,7 @@ OpenGL3Initializer::OpenGL3Initializer()
 
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
-	WindowHolder::getWindowHolder()->setWindow(window);
+    WindowHolder::getInstance()->setWindow(window);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
 	glEnable(GL_DEPTH_TEST);

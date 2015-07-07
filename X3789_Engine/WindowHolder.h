@@ -13,7 +13,7 @@ protected:
 	//WindowHolder& operator=(const WindowHolder&);
 public:
 
-	static WindowHolder* getWindowHolder()
+    static WindowHolder* getInstance()
 	{
 		if (!instance)
 			instance = new WindowHolder();
@@ -22,7 +22,7 @@ public:
 	~WindowHolder()
 	{}
 
-	GLFWwindow* getWindow()
+    GLFWwindow* getWindow()
 	{
 		return window;
 	}
