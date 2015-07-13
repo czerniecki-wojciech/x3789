@@ -124,9 +124,31 @@ void tests()
 	Singleton<TestOne>::getInstance()->print();
 	Singleton<TestOne>::getInstance()->increment();
 }
+#define WINDOWS
+#ifdef WINDOWS
+#include <direct.h>
+#define GetCurrentDir _getcwd
+#else
+#include <unistd.h>
+#define GetCurrentDir getcwd
+#endif
+
+void getCurrentDirectory(){
+	char cCurrentPath[FILENAME_MAX];
+
+	if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
+	{
+		return;
+	}
+
+	cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
+
+	printf("The current working directory is %s", cCurrentPath);
+}
 
 int main(int argc, char* argv[])
 {
+	getCurrentDirectory();
     X3789_Engine_start();
 
 	tests();
