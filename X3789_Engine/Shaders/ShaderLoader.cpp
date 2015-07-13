@@ -104,7 +104,7 @@ GLuint ShaderLoader::createShader()
 	return glCreateProgram();
 }
 
-bool ShaderLoader::attachShader(GLuint shader_id, const char* file_path, GLuint shader_type)
+bool ShaderLoader::combineWithShaderFile(GLuint shader_id, const char* file_path, GLuint shader_type)
 {
 	// Create the shaders
 	GLuint sub_shader_id = glCreateShader(shader_type);

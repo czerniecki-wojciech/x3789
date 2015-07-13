@@ -56,6 +56,6 @@ void UniformStorage::loadToGPU(GLuint program_id)
 		}
 
 		current_uniform = (Uniform*)((BYTE*)current_uniform + current_uniform->total_size);
-		current_uniform_num++;
+        ++current_uniform_num;
 	}
 }
