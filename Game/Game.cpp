@@ -124,8 +124,7 @@ void tests()
 	Singleton<TestOne>::getInstance()->print();
 	Singleton<TestOne>::getInstance()->increment();
 }
-#define WINDOWS
-#ifdef WINDOWS
+#ifndef SYSTEM_LINUX
 #include <direct.h>
 #define GetCurrentDir _getcwd
 #else
