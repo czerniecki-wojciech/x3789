@@ -1,6 +1,6 @@
-sudo: false
-
 language: cpp
+
+sudo: false
 
 compiler: gcc-5
 
@@ -13,7 +13,6 @@ addons:
       - libx11-dev
       - libxxf86vm-dev
       - libxi-dev
-      - gcc-5-base
 
 env: COMPILER=g++-4.8
 
