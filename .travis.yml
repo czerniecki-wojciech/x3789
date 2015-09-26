@@ -8,11 +8,15 @@ addons:
   apt:
     packages:
       - cmake
-      - g++-5
       - libxrandr-dev
       - libx11-dev
       - libxxf86vm-dev
       - libxi-dev
+
+matrix:
+  include:
+      - os: linux
+        compiler: gcc-4.9
 
 before_script:
     - mkdir build
