@@ -8,7 +8,7 @@ addons:
   apt:
     packages:
       - cmake
-      - g++-4.8
+      - g++-5
       - libxrandr-dev
       - libx11-dev
       - libxxf86vm-dev
