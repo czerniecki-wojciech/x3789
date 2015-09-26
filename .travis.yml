@@ -2,7 +2,7 @@ sudo: false
 
 language: cpp
 
-compiler: gcc
+compiler: gcc-5
 
 addons:
   apt:
@@ -13,7 +13,8 @@ addons:
       - libx11-dev
       - libxxf86vm-dev
       - libxi-dev
-      - gcc-4.8-base
+      - g++-5
+      - gcc-5
 
 env: COMPILER=g++-4.8
 
