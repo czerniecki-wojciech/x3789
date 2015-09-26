@@ -14,10 +14,7 @@ addons:
       - libxxf86vm-dev
       - libxi-dev
 
-matrix:
-  include:
-      - os: linux
-        compiler: gcc-4.9
+env: COMPILER=g++-4.9
 
 before_script:
     - mkdir build
