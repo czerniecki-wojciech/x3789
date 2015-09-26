@@ -2,11 +2,13 @@ sudo: false
 
 language: cpp
 
-compiler: gcc-4.9
+compiler: gcc-4.8
 
 addons:
   apt:
     packages:
+      - gcc-4.8
+      - g++-4.8
       - cmake
       - build-essential
       - libxrandr-dev
