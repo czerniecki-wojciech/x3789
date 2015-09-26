@@ -8,10 +8,10 @@ addons:
   apt:
     packages:
       - cmake
+      - g++-4.8
       - libxrandr-dev
       - libx11-dev
       - libxxf86vm-dev
-      - m
       - libxi-dev
 
 before_script:
