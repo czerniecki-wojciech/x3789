@@ -13,8 +13,7 @@ addons:
       - libx11-dev
       - libxxf86vm-dev
       - libxi-dev
-      - g++-5
-      - gcc-5
+      - gcc-5-base
 
 env: COMPILER=g++-4.8
 
