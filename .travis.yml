@@ -9,6 +9,10 @@ addons:
     packages:
       - cmake
       - xrandr
+      - x11
+      - Xxf86vm
+      - m
+      - Xi
 
 before_script:
     - mkdir build
