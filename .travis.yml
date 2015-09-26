@@ -8,6 +8,7 @@ addons:
   apt:
     packages:
       - cmake
+      - build-essential
       - libxrandr-dev
       - libx11-dev
       - libxxf86vm-dev
