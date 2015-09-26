@@ -8,11 +8,11 @@ addons:
   apt:
     packages:
       - cmake
-      - xrandr
-      - x11
-      - Xxf86vm
+      - libxrandr-dev
+      - libx11-dev
+      - libxxf86vm-dev
       - m
-      - Xi
+      - libxi-dev
 
 before_script:
     - mkdir build
