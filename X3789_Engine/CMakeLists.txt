@@ -15,6 +15,9 @@ add_definitions(-DX3789_ENGINE_EXPORT -D_CRT_SECURE_NO_WARNINGS)
 
 add_library(X3789_Engine SHARED ${X3789_Engine_SRC})
 
+#for 32 bit compilation:
+set_target_properties(X3789_Engine PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+
 include_directories(
 	.
 	..

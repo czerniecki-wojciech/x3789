@@ -27,6 +27,9 @@ file(GLOB GAME_SRC "Game/*.cpp")
 
 add_executable(X3789 ${GAME_SRC})
 
+#for 32bit compilation:
+set_target_properties(X3789 PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
+
 include_directories(
 	.
 	./Common
