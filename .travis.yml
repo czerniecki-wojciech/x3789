@@ -1,7 +1,6 @@
-language: cpp
-
 sudo: false
-
+language: cpp
+os: linux
 compiler: gcc-5
 
 addons:
@@ -13,8 +12,7 @@ addons:
       - libx11-dev
       - libxxf86vm-dev
       - libxi-dev
-
-env: COMPILER=g++-4.8
+      - gcc-5
 
 before_script:
     - mkdir build
