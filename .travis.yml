@@ -1,7 +1,10 @@
 sudo: false
-language: c
+language: cpp
 os: linux
-compiler: gcc-5
+compiler: gcc
+
+install:
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 
 addons:
   apt:
@@ -12,7 +15,8 @@ addons:
       - libx11-dev
       - libxxf86vm-dev
       - libxi-dev
-      - gcc-5
+      - gcc-4.8
+      - g++-4.8
 
 before_script:
     - mkdir build
