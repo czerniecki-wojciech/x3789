@@ -16,7 +16,7 @@ addons:
       - libxrandr-dev
       - libx11-dev
       - libxxf86vm-dev
-      - libxi-dev:i386
+      - libxi-dev
       - gcc-4.8
       - g++-4.8
 
